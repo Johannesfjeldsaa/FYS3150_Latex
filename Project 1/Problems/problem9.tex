@@ -32,29 +32,13 @@ v_j =
 $$
 for bsub. 
 
-Considering the values of the diagonals we can set every value of $a_j=c_j=-1$ and $b_j = 2$. This simplifies the computational demand reducing the 
+Considering the values of the diagonals we can set every value of $a_j=c_j=-1$ and $b_j = 2$. In fsub we get
 
 $$
 \tilde{b}_j = 
-\begin{cases} 
-2 \quad  & \text{, for } j=1 \\
-2 - \frac{1}{\tilde{b}_{j-1}} & \text{, for } j\neq 1
-\end{cases}
-\quad \text{ and , } \quad
-\tilde{g}_j = 
-\begin{cases} 
-g_j \quad  & \text{, for } j=1 \\
-g_j + \frac{1}{\tilde{b}_{j-1}}\tilde{g}_{j-1} & \text{, for } j\neq 1
-\end{cases} \quad , 
+2 - \frac{1}{\tilde{b}_{j-1}} & \text{, for } j\neq 1 \quad, 
 $$
-for fsub and 
-$$
-v_j = 
-\begin{cases} 
-\frac{\tilde{g}_j}{\tilde{b}_n} \quad  & \text{, for } j=n \\
-\frac{\tilde{g}_j + v_{j+1}}{\tilde{b}_j} & \text{, for } j\neq n
-\end{cases} \quad 
-$$
-for bsub. 
+
+computing this for different values of $j$ reveals that $\tilde{b}_j = \frac{j+1}{j}$ which allows the vector $\mathbf{\tilde{b}}$ to not interact with other diagonals. We can therefor pull it out of the algorithm and reduce the number of FLOPs per $j$ in fsub by 3. For bsub we can remove the multiplication $c_jv_{j+1}$ reducing by one FLOP  per $j$ there as well. The resulting algorithm is then reduced from 9 to 5 FLOPs per $j$ and we get $5(n-1)+1 = 5n-4$ FLOPs.
 
 \end{document}

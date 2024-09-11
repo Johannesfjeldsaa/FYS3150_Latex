@@ -60,9 +60,9 @@ v_j =
 \end{cases} \quad .
 $$
 
-Using this algorithm we will perform (ignoring the operations for $j=1$ in the fsub and $j=n$ in bsub) six FLOPs in the fsub and three FLOPS in the bsub per $j$. We will run each loop for $n-1$ iterations. Adding the inetialization (1 FLOP) this yields 
+Using this algorithm we will perform (ignoring the operations for $j=1$ in the fsub and $j=n$ in bsub) six FLOPs in the fsub and three FLOPS in the bsub per $j$. We will run each loop for $n-1$ iterations. Adding the inetialization of $v_j$ (1 FLOP) between fsub and bsub this yields 
 $$
-(9(n-1)+1) = 9n-7 \operatorname{FLOPs} \quad.
+(9(n-1)+1) = 9n-8 \operatorname{FLOPs} \quad.
 $$
 
 For $n\to \infty$ we can approximate the number of FLOPS as $9n$.
