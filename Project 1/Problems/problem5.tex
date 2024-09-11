@@ -1,0 +1,22 @@
+% Håndterer dokumentklasse, språk og symboler
+\documentclass[final, 3p, times, 11.5pt]{article}
+
+\input{../../preamble.tex} % Henter inn pakker og forhåndsdefinerte instillinger
+
+\begin{document}
+\section*{Problem 5}
+
+\textbf{a)} 
+
+Firstly we note that $A$ is a square matrix with dimensions $n\times n$. For the matrix-vector product of $A\mathbf{v}^*$ to be valid the \say{inner}-dimensions needs to be equal, that is, the number of columns in $A$ needs to equal the number of rows in $v^*$. Since we have $\operatorname{dim}(A)=n\times n$ and $\operatorname{dim}(\mathbf{v}^*)=m\times 1$ we must have that $m=n$.
+
+\textbf{b)} 
+
+The complete solution is the solution to $A\mathbf{v} = \mathbf{g}$ which contains \underline{all} solutions, through the sum of the the particular solution and the nullspace of $A$ (a homogenous solution $A\mathbf{v} = \mathbf{0}$) \cite{Linear_Algebra_and_its_Applications}. That is
+
+$$\mathbf{v}^* = \mathbf{v} + \operatorname{null}(A) \quad .$$
+
+Considering this we understand that solving $A\mathbf{v} = \mathbf{g}$ for $\mathbf{v}$ will yield the particular solution. 
+
+
+\end{document}

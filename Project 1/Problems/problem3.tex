@@ -1,0 +1,67 @@
+% Håndterer dokumentklasse, språk og symboler
+\documentclass[final, 3p, times, 11.5pt]{article}
+
+\input{../../preamble.tex} % Henter inn pakker og forhåndsdefinerte instillinger
+
+\begin{document}
+
+\section*{Problem 3}
+
+
+In order to discretize equation \eqref{eq:bvp} we start by discretizing the domain for $x$. For the discretization we use $n+1$ evenly spaced and unique points for which we assign the index $i=0, 1, ..., n$. The step length $\Delta x$ between each $i$ within $\mathcal{D}(x)$ is then $\Delta x = \frac{x_n - x_0}{n} = \frac{1-0}{n}=\frac{1}{n}$. The value of $x$ at $i$ is then given by $x_i = x_0 + i\Delta x = i\Delta x$. 
+
+For the discretization of the full equation we further define the notation: $u(x_i) := u_i$ and $u(x_i \pm \Delta x) = u_{i\pm 1 x}$. 
+
+There are three parts that needs to be defined in the new discrete space:
+\begin{itemize}
+    \item the analytical solution of eqation \eqref{eq:exact_solution}
+    \item the RHS $f(x)$
+    \item and LHS $\frac{d^{2}u}{dx^{2}}$
+\end{itemize}
+
+
+For the analytical solution we then get the discretized version by using the defined notation
+
+\begin{equation}
+\label{eq:discrete_u_i}
+    u_i = 1 - (1-e^{-10})x_i - e^{-10x_i} \quad .
+\end{equation}
+
+The RHS function is similary discretized by 
+
+\begin{equation}
+\label{eq:discrete_f_i}
+     f_i = 100e^{-10x_i} \quad , 
+\end{equation}
+
+where we used $f_i := f(x_i)$. 
+
+To solve the equation we also need to discretize the left hand side differentiation. The second order derivative is 
+\begin{equation}
+\frac{d^{2}u}{dx^{2}} = u''(x) =  
+\frac{u(x+\Delta x) - 2u(x) + u(x-\Delta x)}{(\Delta x)^{2}} +
+\mathcal{O}((\Delta x )^{2})
+\end{equation}
+
+from there we approximate the solution by removing $\mathcal{O}((\Delta x )^{2})$ ($v(x) := u(x) - \mathcal{O}((\Delta x )^{2}) \implies v(x) \approx u(x)$) and discretize using the previously defined notation. This yields the expression
+$$
+v''_i = 
+\frac{v_{i+1} - 2v_i + v_{i-1}}{(\Delta x)^2} 
+$$
+
+Bring it all together (remember the LHS was $-u''$ and not $u''$) we get the discretized approximation of the poisson equation
+\begin{equation}
+\label{eq:discrete_poissoneq}
+- v_{i+1} + 2v_i - v_{i-1} = 
+(\Delta x)^2 f_i \quad ,
+\end{equation}
+
+for which we know;
+\begin{itemize}
+    \item $\Delta x$ and $f_i$ for $\mathcal{D}(i)$,
+    \item $v_i$ for $i \in \{0, n\}$.
+\end{itemize}
+
+To solve the equation we therefor need to approximate the values of $v_i \notin \{0, n\}$ via the finite difference method. 
+
+\end{document}

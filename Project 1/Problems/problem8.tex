@@ -1,0 +1,37 @@
+% Håndterer dokumentklasse, språk og symboler
+\documentclass[final, 3p, times, 11.5pt]{article}
+
+\input{../../preamble.tex} % Henter inn pakker og forhåndsdefinerte instillinger
+
+\begin{document}
+\section*{Problem 8}
+
+\subsection{Solution}
+
+We calculate the absolute and relative error as a part of the main loop in \href{https://github.com/Johannesfjeldsaa/FYS3150/blob/Project1/Project1/solutions/problem7.cpp}{`solutions/problem7.cpp`}. The errors are save to `output/problem7data.out` along the x, u and v values which is further opened in \href{https://github.com/Johannesfjeldsaa/FYS3150/blob/Project1/Project1/solutions/plotting.ipynb}{solutions/plotting.ipynb`} where figure \ref{fig:problem8} and table \ref{tab:} is generated.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.8\linewidth]{Project 1/Figurer/problem8fig.pdf}
+    \caption{a) the log of the absolute error , b) the log of the relative error and c) the max relative error per configuration of n_steps}
+    \label{fig:problem8}
+\end{figure}
+
+
+\begin{table}[h!]
+    \centering
+    \caption{the max relative error for each configuration of number of steps. }
+    \begin{tabular}{cc}
+        n\_steps & max\_rel\_error\\
+        10 & 7.932641e-02\\
+        100 & 8.329168e-04\\
+        1000 & 8.333292e-06\\
+        10000  & 8.333006e-08\\
+        100000 &  1.435597e-09
+    \end{tabular}
+    \label{tab:my_label}
+\end{table}
+ 
+I do think that I am experiencing either a) a bug in the code for calculation of the relative error or b) a problem with the round errors in this calculation as there is no dependency of the values with respect to the x value. 
+
+\end{document}

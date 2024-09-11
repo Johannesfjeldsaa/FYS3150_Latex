@@ -1,0 +1,43 @@
+% Håndterer dokumentklasse, språk og symboler
+\documentclass[final, 3p, times, 11.5pt]{article}
+
+\input{../../preamble.tex} % Henter inn pakker og forhåndsdefinerte instillinger
+
+\begin{document}
+\section*{Problem 1}
+
+Given the boundary value problem 
+\begin{equation}
+\label{eq:bvp}
+- \frac{d^{2}{u}}{d{x^{2}}} = f(x)
+\end{equation}
+
+where 
+- $f(x) = 100e^{-10x}$
+- $x\in[0, 1]$
+- $u(x=0)=u(x=1)= 0$
+we check if $u(x)$ is a solution by confirming that the left hand side (LHS) equals the right hand side (RHS) after the derivatives are taken. 
+
+Only assessing the LHS we get 
+
+\begin{align*}
+- \frac{d^{2}{u(x)}}{d{x^{2}}}  & =  
+- \frac{d^{2}}{d{x^{2}}} \left[
+1 - (1- e^{-10})x - e^{-10x}  
+\right]  \\ 
+& =  
+- \frac{d}{d{x}}\left[
+\frac{d}{d{x}} 1 -  (1-e^{-10})\frac{d{x}}{d{x}} - \frac{d{}}{d{x}}e^{-10x}
+\right] \\
+& = 
+- \frac{d}{d{x}}\left[
+-1 + e^{10} + 10e^{-10x}
+\right] \\
+&= 100 e^{-10x} &(= RHS) \quad .
+\end{align*} 
+
+
+
+
+
+\end{document}

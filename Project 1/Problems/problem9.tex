@@ -1,0 +1,60 @@
+% Håndterer dokumentklasse, språk og symboler
+\documentclass[final, 3p, times, 11.5pt]{article}
+
+\input{../../preamble.tex} % Henter inn pakker og forhåndsdefinerte instillinger
+
+\begin{document}
+\section*{Problem 9}
+
+
+In order to specialize the algorithm we only need to consider the row operations performed during the fsub and bsub. From the general algorithm we had 
+
+$$
+\tilde{b}_j = 
+\begin{cases} 
+b_j \quad  & \text{, for } j=1 \\
+b_j - \frac{a_j}{\tilde{b}_{j-1}}c_{j-1} & \text{, for } j\neq 1
+\end{cases}
+\quad \text{ and , } \quad
+\tilde{g}_j = 
+\begin{cases} 
+g_j \quad  & \text{, for } j=1 \\
+g_j - \frac{a_j}{\tilde{b}_{j-1}}\tilde{g}_{j-1} & \text{, for } j\neq 1
+\end{cases} \quad , 
+$$
+for fsub and 
+$$
+v_j = 
+\begin{cases} 
+\frac{\tilde{g}_j}{\tilde{b}_n} \quad  & \text{, for } j=n \\
+\frac{\tilde{g}_j - c_jv_{j+1}}{\tilde{b}_j} & \text{, for } j\neq n
+\end{cases} \quad 
+$$
+for bsub. 
+
+Considering the values of the diagonals we can set every value of $a_j=c_j=-1$ and $b_j = 2$. This simplifies the computational demand reducing the 
+
+$$
+\tilde{b}_j = 
+\begin{cases} 
+2 \quad  & \text{, for } j=1 \\
+2 - \frac{1}{\tilde{b}_{j-1}} & \text{, for } j\neq 1
+\end{cases}
+\quad \text{ and , } \quad
+\tilde{g}_j = 
+\begin{cases} 
+g_j \quad  & \text{, for } j=1 \\
+g_j + \frac{1}{\tilde{b}_{j-1}}\tilde{g}_{j-1} & \text{, for } j\neq 1
+\end{cases} \quad , 
+$$
+for fsub and 
+$$
+v_j = 
+\begin{cases} 
+\frac{\tilde{g}_j}{\tilde{b}_n} \quad  & \text{, for } j=n \\
+\frac{\tilde{g}_j + v_{j+1}}{\tilde{b}_j} & \text{, for } j\neq n
+\end{cases} \quad 
+$$
+for bsub. 
+
+\end{document}

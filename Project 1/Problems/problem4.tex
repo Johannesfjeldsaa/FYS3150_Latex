@@ -1,0 +1,65 @@
+% Håndterer dokumentklasse, språk og symboler
+\documentclass[final, 3p, times, 11.5pt]{article}
+
+\input{../../preamble.tex} % Henter inn pakker og forhåndsdefinerte instillinger
+
+\begin{document}
+
+\section*{Problem 4}
+
+
+
+Consider equation \eqref{eq:discrete_f_i} at $i=1,2, ..., n-1$. Then we get the system of linear equations
+
+$$
+\eqref{eq:discrete_f_i}(i=1,2, ..., n-1) = 
+\begin{cases}
+-v_2 + 2v_1 - v_0    =  (\Delta x)^{2} f_1 \\
+-v_3 + 2v_2 - v_1   =  (\Delta x)^{2} f_2 \\
+\quad \vdots  \\
+-v_n + 2v_{n-1} - v_{n-2}  =  (\Delta x)^{2} f_{n-1}
+\end{cases}
+\quad .
+$$
+
+If we rewrite with all known sizes to the RHS of each equation and reorganize the LHS in increasing order in terms of the index in $v_i$ we get
+$$
+\begin{matrix}
++2v_1 - v_2  & = & (\Delta x)^{2} f_1 + v_0 \\
+-v_1 + 2v_2 - v_3 & = &  (\Delta x)^{2} f_2 \\
+\vdots \\
+-v_{n-2} + 2v_{n-1} &= &  (\Delta x)^{2} f_{n-1} + v_n \\
+\end{matrix} \quad .
+$$
+
+Now this is easily rewritten in matrix terms as
+
+$$
+\overbrace{
+    \begin{bmatrix}
+    2 & -1 & 0 & \dots & 0  & 0 \\
+    -1 & 2 & -1 & \dots & 0 & 0 \\
+    \vdots & \vdots & \vdots &  \ddots & \vdots  & \vdots\\
+    0 & 0 & 0 & \dots & -1 & 2 
+    \end{bmatrix}
+    }^{A\in \mathbb{R}^{(n-1)\times(n-1)}}
+\overbrace{
+    \begin{bmatrix}
+    v_1 \\ v_2 \\ v_3 \\ \vdots \\ v_{n-2} \\ v_{n-1}
+    \end{bmatrix}
+    }^{\mathbf{v}\in \mathbb{R}^{(n-1)}}
+= 
+\overbrace{
+    \begin{bmatrix}
+    (\Delta x)^{2} f_1 \\
+    (\Delta x)^{2} f_2 \\
+    \vdots \\
+    (\Delta x)^{2} f_{n-1} 
+    \end{bmatrix}
+    }^{\mathbf{g}\in\mathbb{R}^{(n-1)}} \quad ,
+$$
+
+where we have used that $v_0 = v_n = 0$. Here the sub-, main- and super-diagonal of $A$ will have the signature $(-1, 2, -1)$ and we have defined the $i$-th element of $\mathbf{g}$, that is $g_i$, to be the known sizes of equation \eqref{eq:discrete_poissoneq} in index $i$ while $v_i$ holds the unknown sizes for which the equation must be solved.
+
+
+\end{document}

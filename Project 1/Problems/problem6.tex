@@ -1,0 +1,70 @@
+% Håndterer dokumentklasse, språk og symboler
+\documentclass[final, 3p, times, 11.5pt]{article}
+
+\input{../../preamble.tex} % Henter inn pakker og forhåndsdefinerte instillinger
+
+\begin{document}
+\section*{Problem 6}
+
+\textbf{a)}
+
+Since $A$ is a general tridiagonal matrix we can use the \textit{Thomas algorithm} which consists of; 1) a forward substitution, and 2) a backward substitution on the augmented matrix $B = \begin{bmatrix}A & \mathbf{g} \end{bmatrix} $. The end result is an augmented matrix $\begin{bmatrix}I & \mathbf{v} \end{bmatrix}$. A general tridiagonal matrix $A \in \mathbb{R}^{n\times n}$ has the form 
+
+$$
+\begin{bmatrix}
+b_1 & c_1 & 0 & \dots & 0 \\
+a_2 & b_2 & c_2 & \dots & 0 \\
+0   & a_3 & b_3 & \dots & 0 \\
+\vdots & \vdots & \vdots & \ddots & \vdots \\
+0  & 0 & 0 & a_n & b_n 
+\end{bmatrix} \quad ,
+$$
+
+where the subdiagonal is formed by $\mathbf{a} = [a_2, a_3, ..., a_n]$, the diagonal is formed by $\mathbf{b} = [b_1, b_2, ..., b_n]$ and the superdiagonal is formed by $\mathbf{c} = [c_1, c_2, ..., c_{n-1}]$. Note here that first element of $\mathbf{a}$ is found in row number two ($R_2$) and the last element of $\mathbf{c}$ is found in the second to last row ($R_{n-1}$).
+
+During the forward substitution (fsub) we iterate through the rows $R_2, R_3, ..., R_n$ of the augmented matrix $[A \mathbf{g}]$ and performing the row operation $R_j \to R_j - \frac{a_j}{b_{j-1}}R_{j-1}$ for $j=2, 3, ... n$. The result is that $B$ becomes upper-traigonal on the form 
+
+$$
+\begin{bmatrix}A & \mathbf{g} \end{bmatrix} \stackrel{\text{fsub}}{\to}
+\left[
+\begin{array}{ccccc|c}
+\tilde{b}_1 & c_1 & 0 & \dots & 0 & \tilde{g}_1\\
+0 & \tilde{b}_2 & c_2 & \dots & 0 & \tilde{g}_2\\
+0 & 0 & \tilde{b}_3 & \dots & 0 & \tilde{g}_3 \\
+\vdots & \vdots & \vdots & \ddots & \vdots & \vdots\\
+0  & 0 & 0 & 0 & \tilde{b}_n & \tilde{g}_n
+\end{array}
+\right] (:= B_{fsub}) \quad ,
+$$
+
+where $$
+\tilde{b}_j = 
+\begin{cases} 
+b_j \quad  & \text{, for } j=1 \\
+b_j - \frac{a_j}{\tilde{b}_{j-1}}c_{j-1} & \text{, for } j\neq 1
+\end{cases}
+\quad \text{ and , } \quad
+\tilde{g}_j = 
+\begin{cases} 
+g_j \quad  & \text{, for } j=1 \\
+g_j - \frac{a_j}{\tilde{b}_{j-1}}\tilde{g}_{j-1} & \text{, for } j\neq 1
+\end{cases} \quad .
+$$
+
+During the backwar substitution (bsub) we iterate through the rows $R_n, R_{n-1}, ..., R_1$ of $B_{fsub}$ and perform the row operations $R_n \to \frac{R_n}{\tilde{b}_n}$ and $R_j \to \frac{R_j -c_jR_{j+1}}{\tilde{b}_j}$ for $j=n-1, n-2, ... n_1$. The result is that $B_{fsub}$ becomes $\begin{bmatrix}I & \mathbf{v} \end{bmatrix}$ where
+$$
+v_j = 
+\begin{cases} 
+\frac{\tilde{g}_j}{\tilde{b}_n} \quad  & \text{, for } j=n \\
+\frac{\tilde{g}_j - c_jv_{j+1}}{\tilde{b}_j} & \text{, for } j\neq n
+\end{cases} \quad .
+$$
+
+Using this algorithm we will perform (ignoring the operations for $j=1$ in the fsub and $j=n$ in bsub) six FLOPs in the fsub and three FLOPS in the bsub per $j$. We will run each loop for $n-1$ iterations. Adding the inetialization (1 FLOP) this yields 
+$$
+(9(n-1)+1) = 9n-7 \operatorname{FLOPs} \quad.
+$$
+
+For $n\to \infty$ we can approximate the number of FLOPS as $9n$.
+
+\end{document}

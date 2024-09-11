@@ -1,0 +1,22 @@
+% Håndterer dokumentklasse, språk og symboler
+\documentclass[final, 3p, times, 11.5pt]{article}
+
+\input{../../preamble.tex} % Henter inn pakker og forhåndsdefinerte instillinger
+
+\begin{document}
+\section*{Problem 7}
+
+
+The algorithm is written in \href{https://github.com/Johannesfjeldsaa/FYS3150/blob/Project1/Project1/solutions/problem7.cpp}{`solutions/problem7.cpp`}. Here the main functionality of the code is to a) generate the vectors of x, g(x), u(x) and the sub, main and superdiagonal, b) solve the v(x) using the general thomas algorithm and c) write these values to an output string stream. This stream is save to `output/problem7data.out` which is further opened in \href{https://github.com/Johannesfjeldsaa/FYS3150/blob/Project1/Project1/solutions/plotting.ipynb}{solutions/plotting.ipynb`} and figure \ref{fig:problem7} is generated.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.6\linewidth]{Project 1/Figurer/problem7fig.pdf}
+    \caption{The exact solution $u(x)$ of the Poisson equation. The left hand side plots shows the full x domain while the right hand side plot is zoomed in on a smaller domain}
+    \label{fig:problem7}
+\end{figure}
+
+
+
+
+\end{document}

@@ -1,0 +1,65 @@
+\documentclass[english,notitlepage]{article}  % defines the basic parameters of the document
+%For preview: skriv i terminal: latexmk -pdf -pvc filnavn
+
+
+\input{../preamble.tex}
+
+\begin{document}
+
+\title{Solution to Project 1 in \\
+\huge FYS3150 Computation Physics \\}      % self-explanatory
+\author{by: Johannes Fjeldså}
+\date{\today}                      % self-explanatory
+\noaffiliation                            % ignore this, but keep it.
+
+
+\maketitle 
+    
+\textit{My github repo is found \href{https://github.com/Johannesfjeldsaa/FYS3150/tree/Project1}{here}!}
+    
+\newpage
+\subfile{Problems/problem1}
+
+\newpage
+\subfile{Problems/problem2}
+
+\newpage
+\subfile{Problems/problem3}
+
+\newpage
+\subfile{Problems/problem4}
+
+\newpage
+\subfile{Problems/problem5}
+
+\newpage
+\subfile{Problems/problem6}
+
+
+\newpage
+\subfile{Problems/problem7}
+
+\newpage
+\subfile{Problems/problem8}
+
+\newpage
+\subfile{Problems/problem9}
+
+
+Finally, we can list algorithms by using the \texttt{algorithm} environment, as demonstrated here for algorithm \ref{algo:midpoint_rule}.
+\begin{algorithm}[H]
+    \caption{Some algorithm}\label{algo:midpoint_rule}
+    \begin{algorithmic}
+        \State Some maths, e.g $f(x) = x^2$.  \Comment{Here's a comment}
+        \For{$i = 0, 1, ..., n-1$}
+        \State Do something here 
+        \EndFor
+        \While{Some condition}
+        \State Do something more here 
+        \EndWhile
+        \State Maybe even some more math here, e.g $\int_0^1 f(x) \dd x$
+    \end{algorithmic}
+\end{algorithm}
+   
+\end{document}
+

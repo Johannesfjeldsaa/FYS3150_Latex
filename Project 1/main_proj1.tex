@@ -1,0 +1,57 @@
+% Håndterer dokumentklasse, språk og symboler
+\documentclass[final, 3p, times,11.5pt]{article}
+
+\input{../preamble.tex}
+\usepackage{tocloft}
+\setlength{\cftwidth}{0.8\textwidth}  % Adjust as needed
+
+\title{Solution to Project 1 in \\
+\huge FYS3150 Computation Physics \\}
+\author{by: Johannes Fjeldså}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+\vspace{2 cm}
+The code for this project is found in my github \href{https://github.com/Johannesfjeldsaa/FYS3150/tree/Project1}{here}.
+
+\vspace{2 cm}
+\begin{multicols}{2}  % Change 2 to desired number of columns
+    \tableofcontents
+\end{multicols}
+
+
+\newpage
+\subfile{Problems/problem1}
+
+\newpage
+\subfile{Problems/problem2}
+
+\newpage
+\subfile{Problems/problem3}
+
+\newpage
+\subfile{Problems/problem4}
+
+\newpage
+\subfile{Problems/problem5}
+
+\newpage
+\subfile{Problems/problem6}
+\newpage
+\textbf{Write the pseudocodo and count FLOPs}
+
+\newpage
+\subfile{Problems/problem7}
+
+\newpage
+\subfile{Problems/problem8}
+
+\newpage
+\subfile{Problems/problem9}
+
+
+
+\end{document}
+

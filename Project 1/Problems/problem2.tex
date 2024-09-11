@@ -1,0 +1,20 @@
+% Håndterer dokumentklasse, språk og symboler
+\documentclass[final, 3p, times, 11.5pt]{article}
+
+\input{../../preamble.tex} % Henter inn pakker og forhåndsdefinerte instillinger
+
+\begin{document}
+\section*{Problem 2}
+
+We generate the data using the script in \href{https://github.com/Johannesfjeldsaa/FYS3150/blob/Project1/Project1/solutions/problem2.cpp}{`solutions/problem2.cpp`}. Here the main functionality of the code is to a) generate the vectors of x and u(x) values and b) write these values to an output string stream. This stream is save to `output/problem2data.out` which is further opened in \href{https://github.com/Johannesfjeldsaa/FYS3150/blob/Project1/Project1/solutions/plotting.ipynb}{solutions/plotting.ipynb`} and figure \ref{fig:problem2} is generated.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.6\linewidth]{Project 1/Figurer/problem2fig.pdf}
+    \caption{The exact solution $u(x)$ of the Poisson equation.}
+    \label{fig:problem2}
+\end{figure}
+
+
+
+\end{document}

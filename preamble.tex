@@ -1,0 +1,118 @@
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+% Dokumentformatering:
+\setlength\parindent{0pt} %ingen innrykk
+\usepackage[parfill]{parskip} % Mellomrom mellom avsnitt
+% Endre str
+\usepackage[a4paper,top=3cm,bottom=2cm,left=1.5cm,right=1.5cm,marginparwidth=1.75cm]{geometry} % utnytter større del av arket.
+\usepackage{appendix}
+\usepackage{multicol}
+\usepackage{titlesec}
+\titleformat{\chapter}[display]
+  {\normalfont\huge\bfseries}{\chaptertitlename\ \thechapter}{20pt}{\Huge}
+\titlespacing*{\chapter}{0pt}{-70pt}{20pt} % reduce headspace of the chapter title
+\setcounter{secnumdepth}{3} % Set the depth of section numbering to subsubsections
+
+
+
+% Matte og symboler
+\usepackage{lmodern}
+\usepackage{textcomp, gensymb}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{physics}
+\usepackage{cancel} % Gjennomstreking i likninger etc
+\usepackage{amsthm}
+\usepackage{caption}
+\usepackage{dirtytalk}
+\usepackage{cancel}
+
+% Pseudocode
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+
+% Håndterer grafikk:
+\usepackage{graphicx}
+\graphicspath{{Figurer/}} % Henter grafikk fra mappen "Figurer"
+\usepackage{wrapfig}
+%\setlength{\intextsep}{2pt} % adjust vertical space above and below the wrapfigure
+\usepackage{subcaption} % eller subfigure
+\usepackage[font=small,labelfont=bf]{caption} % Mindre figurtekst, bold på figur numerering
+\usepackage{transparent} % Kan gjøre tekst mere gjenomsiktig
+\usepackage{listings}
+\usepackage{paralist}
+\usepackage{tikz}
+\usetikzlibrary{matrix}
+\usetikzlibrary{fit}
+\usetikzlibrary{intersections}
+\usepackage{multirow}
+\usepackage{pdfpages} % sett in pdf i dokumentet
+\usepackage{subcaption} 
+\usepackage{tabularx}
+\usepackage{tabularray} % beste tabellpakke
+\usepackage{pgfplots}
+\usepgfplotslibrary{fillbetween}
+\pgfplotsset{width=10cm,compat=1.9}
+\newcommand{\tabitem}{~~\llap{\textbullet}~~} % for kulepunkter i tabeller uten vspace over dem
+
+
+% Håndterer fine tabeller:
+\usepackage{booktabs}
+\usepackage{multirow}
+
+% For å hente inn pdfsider. 
+\usepackage{pdfpages}
+
+% Håntere kilder med hyperlinker
+\usepackage{csquotes}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,        % Colored links instead of frames
+    linkcolor=blue,         % Color for internal links
+    citecolor=red,          % Color for citations
+    urlcolor=red            % Color for external links
+}
+\usepackage[style=numeric, sorting=none]{biblatex} 
+\addbibresource{sources.bib}
+\usepackage{lastpage} 
+\usepackage[printonlyused,withpage]{acronym}
+\usepackage{footmisc}
+
+
+
+
+% Egne funksjoner
+\newcommand{\frontmatter}{\cleardoublepage \pagenumbering{roman}}
+\newcommand{\mainmatter}{\cleardoublepage \pagenumbering{arabic}}
+
+\usepackage{caption}
+\captionsetup{%
+    ,format=hang
+    ,justification=raggedright
+    ,singlelinecheck=false
+    ,figureposition=top
+    }
+
+
+\makeatletter
+\AtBeginDocument{%
+  \renewcommand*{\AC@hyperlink}[2]{%
+    \begingroup
+      \hypersetup{hidelinks}%
+      \hyperlink{#1}{#2}%
+    \endgroup
+  }%
+}
+\makeatother
+
+
+
+
+
+% Håndterer multi-fil oppsett:
+\usepackage{xr}
+\usepackage{subfiles}
+\externaldocument{\subfix{main}}
