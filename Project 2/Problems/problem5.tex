@@ -1,0 +1,50 @@
+\documentclass[final, 3p, times, 11.5pt]{article}
+
+\input{../../preamble.tex} 
+
+\begin{document}
+\section{Problem 5}
+
+To test the effect of increasing the democratization resolution (that is, letting $n$ grow), we simply iterate over different sizes in $\mathbf{N} = \{2, 4, 8, 16, 32, 64, 128\}$. 
+
+As shown in table \ref{tab:conv} number of iterations used for convergence of the algorithm increases exponentially with an increase in the discretization resolution. The fractional relation between iterations and $N$ is computed in the last column.
+
+\begin{table}[h!]
+    \centering
+    \caption{Relationship between discretization resolution $n$ (represented by $N = n-1$),  and how many iterations that were performed. }
+    \begin{tabular}{llll}
+    \hline
+    N & Iterations & Ierations / N \\ \hline \hline
+2.0 & 1.0 & 0.500000 \\
+4.0 & 6.0 & 1.500000 \\
+8.0 & 81.0 & 10.125000 \\
+16.0 & 376.0 & 23.500000 \\
+32.0 & 1541.0 & 48.156250 \\
+64.0 & 6413.0 & 100.203125 \\
+128.0 & 25823.0 & 201.742188 \\
+256.0 & 104206.0 & 407.054688 \\
+512.0 & 419619.0 & 819.568359 \\ \hline
+    \end{tabular}
+    \label{tab:conv}
+\end{table}
+
+In the LHS plot of figure \ref{fig:p2prob5} we see the iterations for convergence as a function of $N$. The \say{Type} legend indicates:
+\begin{itemize}
+    \item \textbf{Tridiagonal} - is the same matrix as in table \ref{tab:conv} as presented in problem 2.
+    \item \textbf{Tridiagonal w.o 1/h\^ 2} - We have factored out 1/h\^ 2 from A thus altering the order from $\mathcal{O}(10)$ to $\mathcal{O}(1)$.
+    \item \textbf{Random symmetric} - is a matrix where the elements are filled in randomly with numbers from the gaussian distribution $\sim N(0, 1)$ and then we make it symmetric by mirroring the upper triangle onto the lower. Here all cells will be non-zero. but their order of magnitude will be small.
+\end{itemize}
+
+These results indicates how both the order of magnitude and number of non zero off-diagonal elements affects the number of iterations. In ht RHS plot we see that the crowth rate of the relation Iterations/N is approximately linear as a function of $N$ and resides somewhere between the 1to 1 and 2 to 1 line for the three different matrice types.
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.7\linewidth]{Project 2/Figures/output.png}
+    \caption{LHS: the iterations for convergence as a function of $N$. \\
+    RHS: iterations/N as a function of $N$.}
+    \label{fig:p2prob5}
+\end{figure}
+
+
+\end{document}
+
+

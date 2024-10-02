@@ -1,0 +1,46 @@
+\documentclass[final, 3p, times, 11.5pt]{article}
+
+\input{../../preamble.tex} 
+\graphicspath{{Project 2/Figures/}}
+
+\begin{document}
+\section{Problem 1}
+
+Let the equation 
+\begin{equation}\label{eq:1d_buckling_beam}
+        \gamma \frac{d^2 u(x)}{dx^2} = - F u(x) \quad ,
+\end{equation}
+
+where $\gamma$ is some constant defined by material properties like rigidity, describe a case where we have a horizontal beam where:
+    \begin{itemize}
+        \item $L$ is the horizontal length between the two beam endpoints. (So before any buckling, $L$ is also the length of the beam.)
+        \item We let $u(x)$ be the vertical displacement of the beam at horizontal position $x$, with $x \in [0,L]$.
+        \item A force $F$ is applied at the endpoint ($x=L$), *directed into the beam*, i.e. towards $x=0$. 
+        \item The beam is fastened with \textit{pin endpoints}, meaning that $u(0)=0$ and $u(L)=0$, but the endpoints are allowed to rotate ($u'(x) \neq 0$).
+    \end{itemize}
+
+An illustration with the key definitions are provided in Figure \ref{fig:beam_illustration}. 
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=.9\textwidth]{Project 2/Figures/horizontal_beam.pdf}
+    \caption{The Beam under stable and unstable conditions. When the force $F$ at $x=L$ exceeds the critical force of the beam $F_{cr}$ it becomes unstable and buckles.}
+    \label{fig:beam_illustration}
+\end{figure}
+
+To ease the process of solving equation \eqref{eq:1d_buckling_beam} we can performe a scaling of the equation by using the change of variables defined by $\hat x (x) := \hat x = \frac{x}{L}$. Under $\hat x$ the vertical displacement becomes $u_x(x) = u_{\hat x}(\hat x(x)):=u(\hat x)$. This variable change yields
+
+\begin{equation*}
+\eqref{eq:1d_buckling_beam}\quad \stackrel{\hat x = x/L}{\longrightarrow} \quad
+    \gamma \frac{d^{2} u(\hat x)}{d (\hat x L)^{2}} = - F u(\hat x) \quad, 
+\end{equation*}
+
+which is easally rewritten to 
+\begin{equation}\label{eq:1d_buckling_beam_scaled}
+    \frac{d^{2} u(\hat x)}{d \hat x^{2}} = - \lambda u(\hat{x})  \quad ,
+\end{equation}
+
+where we defined $\lambda := \frac{FL^{2}}{\gamma}$. 
+
+
+\end{document}

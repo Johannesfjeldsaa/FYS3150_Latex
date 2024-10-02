@@ -1,0 +1,57 @@
+\documentclass[final, 3p, times, 11.5pt]{article}
+
+\input{../../preamble.tex} 
+
+\begin{document}
+\section{Problem 2}
+
+Code solution found in github repo in file \textit{`Project2/solutions/p2.cpp`} and code output will be written to \\ \textit{`Project2/output/problem2data.out`}. 
+
+
+To set up the tridiagonal matrix $A \in \mathbb{R}^{N\times N}$ we firstly provide the corresponding number of parts $n$ for which we want to split the $x$ domain into. Because of the discretization presented in the project description we therefor provide $n=7 \implies N = n-1 = 6$. Further the values $a =- \frac{1}{h^{2}}$ and $d = \frac{2}{h^{2}}$ are calculated using $h = \frac{1}{n} $. The symmetric tridiagonal matrix will have the vector $\mathbf{d} = \begin{bmatrix} 2/h^{2} & 2/h^{2} & \dots & 2/h^{2} \end{bmatrix}$ on the sub- and super- diagonal and the vector $\mathbf{a} = \begin{bmatrix} -1/h^{2} & -1/h^{2} & \dots & -1/h^{2} \end{bmatrix}$ on the diagonal. The resulting matrix becomes 
+
+$$
+A = \frac{1}{h^{2}}
+\begin{bmatrix}
+2   &   -1  &   0   &   \dots   &   0   &   0   \\
+-1  &   2   &   -1  &   \dots   &   0   &   0   \\
+0   &   -1  &   2   &   \dots   &   0   &   0   \\
+\vdots & \vdots & \vdots    &\ddots & \vdots & \vdots\\
+0   &   0   &   0   &   \dots   &   2 & -1   \\   
+0   &   0   &   0   &   \dots   &  -1 & 2 
+\end{bmatrix} \stackrel{N=6}{\implies}
+\begin{bmatrix}
+   98.0 & -49.0 &        0 &        0  &       0  &       0 \\
+  -49.0 &  98.0 & -49.0 &        0   &      0  &       0 \\
+         0 & -49.0  & 98.0  &-49.0 &        0    &     0 \\
+         0 &        0  &-49.0  & 98.0  &-49.0   &      0 \\
+         0 &        0  &       0  &-49.0   &98.0  &-49.0 \\
+         0 &        0  &       0  &       0  &-49.0 &  98.0
+\end{bmatrix}
+$$
+
+The analytical eigenpares are calculated using the equations provided in project description and match with the eigenpairs calculated by armadillo's \textit{`eig\_sym`} function which uses the eigendecomposition of $A$ to find the eigenpairs: 
+
+\textbf{Eigenvalues:}
+    \begin{align*}
+    \mathbf{\lambda} &= \begin{bmatrix} \lambda^{(1)} & \lambda^{(2)} & \dots & \lambda^{(6)}\end{bmatrix}        \\
+    &= \begin{bmatrix} 
+    9.7051 & 36.8980 & 76.1930 & 119.8100 & 159.1000 & 186.2900
+    \end{bmatrix}
+    \end{align*}
+
+\textbf{Eigenvectors:}
+
+    \begin{align*}
+        v &= \begin{bmatrix}\mathbf{v^{(1)}} & \mathbf{v^{(2)}} & \dots & \mathbf{v^{(6)}}\end{bmatrix} \\
+        & = \begin{bmatrix}
+            0.2319 & -0.4179 & 0.5211 & 0.5211 & 0.4179 & -0.2319 \\
+0.4179 & -0.5211 & 0.2319 & -0.2319 & -0.5211 & 0.4179 \\
+0.5211 & -0.2319 & -0.4179 & -0.4179 & 0.2319 & -0.5211 \\
+0.5211 & 0.2319 & -0.4179 & 0.4179 & 0.2319 & 0.5211 \\
+0.4179 & 0.5211 & 0.2319 & 0.2319 & -0.5211 & -0.4179 \\
+0.2319 & 0.4179 & 0.5211 & -0.5211 & 0.4179 & 0.2319 \\
+        \end{bmatrix}
+    \end{align*}
+
+\end{document}

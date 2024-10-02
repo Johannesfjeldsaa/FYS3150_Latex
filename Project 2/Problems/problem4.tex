@@ -1,0 +1,28 @@
+\documentclass[final, 3p, times, 11.5pt]{article}
+
+\input{../../preamble.tex} 
+
+\begin{document}
+\section{Problem 4}
+
+The jacobi rotation algorithm will be used to solve the eigenvalue problem $A\mathbf{v}=\lambda \mathbf{v}$ via a iterative scheme using similarity transformations. 
+
+In similarity transformations we use an orthogonal matrix $S$ which (as a consequence of the orthogonality) has the properties $S^T = S^{-1}$ and $S^T S = S S^T = I$. From the spectral theorem \cite[see theorem 3 chapter 7.1 of ][for detail]{Linear_Algebra_and_its_Applications} $A$ is orthogonally diagonalizable. Which means that we can diagonalize $A$ by 
+$$S^TAS=D \quad,$$
+where the column vectors ($\mathbf{s}_l$ of $S = \begin{bmatrix} \mathbf{s}_1 & \mathbf{s}_2 & \dots & \mathbf{s}_N\end{bmatrix}$ will be the orthonormal eigenvectors of $A$ and $\operatorname{trace}(D)$ will hold the corresponding eigenvalues (again following from the spectral theorem. 
+
+To find the matrix $S$ on can calculate the charasteristic equation of $A$ for smaller matrices however this is not feasable for larger matrices in general. Therefor we will use $p$ similarity transformations such that
+$$
+A \quad \stackrel{\text{after $p$ iter.}}{\to} \quad  
+S_p^T S_{p-1}^T \dots S_1^T A S_1 \dots S_{p-1}S_p \approx D \quad.
+$$
+By doing this we approximate the matrix $S$ by the matrix product $S_1 S_2 \dots S_p$.
+
+The construction of the matrices $S_x$ is outlined in detail in the compendium so I will not go into the details of this algorithm, however my source code for the algorithm is found my github repo in file \textit{`Project2/solutions/p4.cpp`} and code output will be written to \textit{`Project2/output/problem4data.out`}. 
+
+For $A \in \mathbb{R}^{6 \times 6}$ as presented in problem 2 the jacobi rotation algorithm converged after 35 iterations with a off-diagonal max value of $2.6*10^{-9} < \epsilon = 10^{-5}$ with eigenpairs corresponding to the analytical result (apart from ordering of elements in the eigenvectors due to the rotations).
+
+
+
+
+\end{document}

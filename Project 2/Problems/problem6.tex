@@ -1,0 +1,28 @@
+\documentclass[final, 3p, times, 11.5pt]{article}
+
+\input{../../preamble.tex} 
+
+\begin{document}
+\section{Problem 6}
+
+Results shown in figure \ref{fig:p2prob6}. One of the eigenvecors are scaled by $c=-1$ for the analytical compared to the jacobi rotation vector, but they are alike apart from that. 
+The higher resolution of the discretization gives a much smoother graph, but the overall shapes are the same oscillations.
+
+\begin{figure}[h!]
+     \centering
+     \begin{subfigure}[b]{0.5\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{Project 2/Figures/eigenvectors.png}
+         \caption{Eigenvectors when $n=10$}
+         \label{fig:eigvec10}
+     \end{subfigure}
+     \hfill
+     \begin{subfigure}[b]{0.5\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{Project 2/Figures/eigenvectors100.png}
+         \caption{Eigenvectors when $n=100$}
+         \label{fig:eigvec100}
+     \end{subfigure}
+     \label{fig:p2prob6}
+\end{figure}
+\end{document}

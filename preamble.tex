@@ -13,7 +13,7 @@
 \titleformat{\chapter}[display]
   {\normalfont\huge\bfseries}{\chaptertitlename\ \thechapter}{20pt}{\Huge}
 \titlespacing*{\chapter}{0pt}{-70pt}{20pt} % reduce headspace of the chapter title
-\setcounter{secnumdepth}{3} % Set the depth of section numbering to subsubsections
+\setcounter{secnumdepth}{0} % Set the depth of section numbering to subsubsections
 
 
 
@@ -36,9 +36,9 @@
 
 % Håndterer grafikk:
 \usepackage{graphicx}
-\graphicspath{{Figurer/}} % Henter grafikk fra mappen "Figurer"
+\graphicspath{{Figures/}} % Henter grafikk fra mappen "Figurer"
 \usepackage{wrapfig}
-%\setlength{\intextsep}{2pt} % adjust vertical space above and below the wrapfigure
+\setlength{\intextsep}{2pt} % adjust vertical space above and below the wrapfigure
 \usepackage{subcaption} % eller subfigure
 \usepackage[font=small,labelfont=bf]{caption} % Mindre figurtekst, bold på figur numerering
 \usepackage{transparent} % Kan gjøre tekst mere gjenomsiktig
@@ -58,13 +58,9 @@
 \pgfplotsset{width=10cm,compat=1.9}
 \newcommand{\tabitem}{~~\llap{\textbullet}~~} % for kulepunkter i tabeller uten vspace over dem
 
-
 % Håndterer fine tabeller:
 \usepackage{booktabs}
 \usepackage{multirow}
-
-% For å hente inn pdfsider. 
-\usepackage{pdfpages}
 
 % Håntere kilder med hyperlinker
 \usepackage{csquotes}

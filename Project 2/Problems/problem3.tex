@@ -1,0 +1,25 @@
+\documentclass[final, 3p, times, 11.5pt]{article}
+
+\input{../../preamble.tex} 
+
+\begin{document}
+\section{Problem 3}
+
+Code solution found in github repo in file \textit{`Project2/solutions/p3.cpp`} and code output will be written to \\ \textit{`Project2/output/problem3data.out`}. 
+
+To find the largest off-diagonal element of a symmetric matrix, that is; the largest element $a_{k, l} = A(k,l)$ where $k\neq l$ we only iterate over the upper triangle part of $A$. And so (using $k \& l \in \{0, 1, \dots, N-1\}$) we iterate over the cells where the row index $k \in \{0, 1, \dots, N\}$ and the column index $l \in \{1, 2, \dots, N\}$. We then save the maximum value (absolute value) and the corresponding indexes. 
+
+For the test matrix 
+$$
+A = 
+\begin{bmatrix}
+1 & 0 & 0 & 0.5\\
+0 & 1 & -0.7 & 0\\
+0 & -0.7 & 1 & 0\\
+0.5 & 0 & 0 & 1
+\end{bmatrix}
+$$
+
+we get $max(A) = A(1, 2) = A(2,1) = |.7|$ from the algorithm as expected. 
+
+\end{document}

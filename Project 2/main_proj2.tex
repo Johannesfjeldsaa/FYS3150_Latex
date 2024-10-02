@@ -1,0 +1,59 @@
+\documentclass[english,notitlepage]{article}  % defines the basic parameters of the document
+%For preview: skriv i terminal: latexmk -pdf -pvc filnavn
+
+
+\input{../preamble.tex}
+
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%% Make front page %%%
+%%%%%%%%%%%%%%%%%%%%%%%
+
+\title{
+Solution to Project 1 in \\
+\huge FYS3150 Computation Physics 
+}      % self-explanatory
+\author{by: Johannes Fjeldså}          % self-explanatory
+\date{\today}                             % self-explanatory
+
+\maketitle 
+    
+\textit{My github repo is found at: \href{https://github.com/Johannesfjeldsaa/FYS3150}{https://github.com/Johannesfjeldsaa/FYS3150}, \\
+and \LaTeX typing is found at \href{https://github.com/Johannesfjeldsaa/FYS3150_Latex}{https://github.com/Johannesfjeldsaa/FYS3150\_Latex}}    
+
+\tableofcontents
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% add subfiles for problems %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newpage
+\subfile{Problems/problem1}
+
+\newpage
+\subfile{Problems/problem2}
+
+\newpage
+\subfile{Problems/problem3}
+
+\newpage
+\subfile{Problems/problem4}
+
+\newpage
+\subfile{Problems/problem5}
+
+\newpage
+\subfile{Problems/problem6}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+%%% add bibliography %%%
+%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage 
+\printbibliography
+
+
+\end{document}
