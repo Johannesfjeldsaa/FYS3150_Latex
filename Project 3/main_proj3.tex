@@ -1,0 +1,63 @@
+\documentclass[12pt,a4paper,twocolumn]{article}
+\input{../preamble.tex}
+
+
+\begin{document}
+
+\twocolumn[
+\begin{@twocolumnfalse}
+\title{
+Solution to Project 3 in FYS3150 Computation Physics  \\
+\huge modelling the Penning trap 
+}      % self-explanatory
+\author{by: Johannes Fjeldså}          % self-explanatory
+\date{\today}                             % self-explanatory
+
+\maketitle 
+
+%This is how we create an abstract section.
+\begin{abstract}
+    \noindent We provide an overview of how to structure a scientific report. For concreteness, we consider the example of writing a report about an implementation of the midpoint rule of integration. For each section of the report we briefly discuss what the purpose of the given section is. We also provide examples of how to properly include equations, tables, algorithms, figures and references.
+\end{abstract}
+
+\end{@twocolumnfalse}
+]
+
+
+% ===============
+% Introduction
+% ===============
+
+\subfile{sections/introduction}
+
+
+% =====================
+% Methods and theory
+% =====================
+
+\subfile{sections/methods_and_theory}
+
+
+% ==========
+% Results
+% ==========
+
+\subfile{sections/results_and_discussion}
+
+
+% =============
+% Conclusion 
+% =============
+
+\subfile{sections/conclusion}
+
+% ======
+% Bib
+% ======
+
+\newpage 
+\twocolumn[
+\printbibliography
+]
+
+\end{document}

@@ -1,0 +1,82 @@
+\documentclass[../main_proj3.tex]{subfiles}
+
+\graphicspath{{\subfix{Figures/}}}
+
+\begin{document}
+
+\section{Methods}\label{sec:methods}
+
+\textit{The main purpose of the ``Methods'' (or ``Theory'', or ``Algorithms'') section is to provide the reader with the necessary background knowledge to understand the work you will present.\footnote{Note that to get correct quotation marks in LaTeX, you cannot simply use the quotation mark symbol on your keyboard. Check the \texttt{.tex} file for this document to see the correct approach.} It should in general be sufficiently detailed for the reader to understand and reproduce what you have done. However, sometimes it can be a good idea to relegate the discussion of some technical topic to an appendix, to avoid too long discussions of what might be a a fairly minor or technical detail. You are of course free to divide this section into subsections, which we will do below.}
+
+Let $f$ be a continuous and differentiable function, $f: [a,b] \to \mathbb{R}$. Say we want to integrate this function over the entire interval $[a,b]$. To this end, we employ the midpoint rule for integration, which is defined by the equation~\cite{Linear_Algebra_and_its_Applications}
+%
+\begin{equation}
+\label{eq:midpoint_rule}
+    I = \int_a^b f(x)\dd x \approx h\sum_{i=1}^{n} f(x_i).
+\end{equation}
+Here $n$ denotes a number of subintervals of the range $[a,b]$, each of length $h = (b-a)/n$, and $x_i$ is the midpoint of subinterval $i$, given by
+\begin{equation}
+   x_i = a + \left(i-\frac{1}{2}\right) h,
+\end{equation}
+for $i = 1, 2, \ldots, n$. This equation can be written out explicitly (although in this case it is a bit silly):
+%
+\begin{equation}
+    \begin{split}
+        \int_a^b f(x)\dd x & \approx h \sum_{i=1}^{n} f(x_i) \\
+                                    \\
+                                    & = h\left(f(x_1) + \cdots + f(x_{n})\right).
+    \end{split}
+\end{equation}
+%
+\textit{Note the following: We have provided a definition for every single variable that appears in the equations. Always do this --- it greatly improves the transparency and readability of your work! Once a variable is defined, you can reuse it throughout the rest of the report without stating its definition. (This of course assumes that you use consistent notation, so that a symbol does not suddenly change meaning in the middle of your report.)}
+
+\textit{Also, note that we cited a source for our claim. There is no need to provide references for trivial or very well-known results, like Newton's second law, but you should cite material that is vital for your report.}
+
+\textit{If you want to refer to a specific equation from elsewhere in your text, use the equation number, just like you would refer to a table or figure, but also include a parenthesis: ``In Equation \eqref{eq:midpoint_rule} we see that \ldots''. The best approach is to use the \texttt{eqref} command, which adds the parenthesis automatically.} 
+
+\textit{Finally, please note the following two details on how to write equations: First, remember that equations are regarded as part of a sentence, meaning that you should follow the standard rules for punctuation. This typically means that your equations should be followed by a comma or a period. Second, make sure that you do not unintentionally include blank lines before or after the equation in your \texttt{.tex} file. LaTeX interprets blank lines as the beginning of a new paragraph, and will therefore indent the text after the equation. If you prefer having a bit of ``air'' in your LaTeX document, use an empty comment line.}
+
+To test our integration algorithm we will use it to integrate the polynomial $f(x) = x^3$ over the interval $[a,b] = [0,1]$. This is a suitable test case, since the integral has a known analytical solution,
+\begin{equation}
+    \int_0^1 x^3 \dd x = \frac{1}{4}.
+\end{equation}
+In assessing the performance of our approach we will consider the relative error $\epsilon$, defined as
+\begin{equation}
+    \epsilon = \abs{ \frac{I - I_{\text{approx}}}{I} },
+\end{equation}
+where $I$ denotes the exact integral and $I_\text{approx}$ denotes the approximation obtained with our implementation of the midpoint rule algorithm.
+
+% -------------------------------------------
+\subsection*{The algorithm}
+%
+The algorithm for the midpoint rule is summarized in Algorithm~\ref{algo:midpointrule}. The basic idea behind the algorithm is to divide the integration range into to $n$ small subintervals of length $h$, and on each such subinterval approximate the function $f(x)$ by a constant function. The value for this constant function is taken to be the value of $f(x)$ evaluated at the midpoint of the given subinterval --- hence the name of the method.
+%
+\begin{figure}
+% NOTE: We only need \begin{figure} ... \end{figure} here because of a compatability issue between the 'revtex4-1' document class and the 'algorithm' environment.
+    \begin{algorithm}[H]
+    \caption{Midpoint rule for integration}
+    \label{algo:midpointrule}
+        \begin{algorithmic}
+            \Procedure{Midpoint rule}{$f, a, b, n$}
+            \State $I \leftarrow 0$        \Comment{Initialize the integral variable}
+            \State $h \leftarrow (b-a)/n$  \Comment{Compute the interval length}
+            \For{$i = 1, 2, \ldots, n$}
+            \State $x \leftarrow a + (i-1/2)h$  \Comment{Assign $x$ to the midpoint}  %This means x is assigned the value x + ih/2.
+            \State $I \leftarrow I + f(x)$  \Comment{Add contribution to integral} %Assign I to I + f(x)
+            \EndFor
+            \State $I \leftarrow Ih$  \Comment{Finalize the computation}
+            \EndProcedure
+        \end{algorithmic}
+    \end{algorithm}
+\end{figure}
+
+\textit{As demonstrated in Algorithm~\ref{algo:midpointrule}, it is conventional to present algorithms in a way that is independent of any specific programming language. This ensures that it is the logic behind the algorithm that remains in focus, rather than the syntax of a particular programming language. In Algorithm~\ref{algo:midpointrule} we have also demonstrated a common notation: The right-to-left arrow ($\leftarrow$) means that we assign the value of everything on the right to the variable on the left. This is nothing but how the ``='' symbol functions in most programming languages, but the arrow notation makes it clear that we are in fact assigning a value, rather than stating that two things are equal.}
+
+% -------------------------------------------
+\subsection*{Tools}
+%
+\textit{This subsection is for informing the reader about the most important tools or software packages you have used, and what you have used them for. For instance, if you have used ChatGPT for anything, this subsection is where you should write about it.}
+
+We used the Python library \texttt{matplotlib} \cite{Linear_Algebra_and_its_Applications} to produce all illustrations in this report. To parallelize our numerical integration code with \texttt{OpenMP}, we made use of examples taken from the tutorial in Ref.\ \cite{Linear_Algebra_and_its_Applications}.
+
+\end{document}
