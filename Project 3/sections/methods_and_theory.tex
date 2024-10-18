@@ -4,7 +4,212 @@
 
 \begin{document}
 
-\section{Methods}\label{sec:methods}
+\section{Methods and theory}\label{sec:methods_and_theory}
+
+\subsection{The Penning trap}
+
+- introduction on the penning trap and illustration
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.9\linewidth]{Project 3/figures/Penning_Trap.png}
+    \caption{Illustration from Wikipedia.org \cite{PenningTrapIllustration}.}
+    \label{fig:Penning_trap}
+\end{figure}
+
+- defining all parts of the trap and so on.
+
+
+The electric field $\mathbf{E}$ is related to the electric potential $V$ by 
+\begin{equation}
+\label{eq:electric_field-electric_potential}
+\mathbf{E} = - \nabla V \quad, 
+\end{equation}
+
+where we in this study consider an ideal Penning trap where the electric potential is given by 
+
+\begin{equation}
+\label{eq:electric_potential}
+V(x,y,z) = \frac{V_0}{2d^{2}} (2z^{2} - x^{2} - y^{2}) \quad.
+\end{equation}
+
+In equation \eqref{eq:electric_potential} $V_0$ is the potential applied to electrodes of the Penning trap (the end caps and the ring indicated by (a) and (b) in Figure \ref{fig:Penning_trap}). Lastly the characteristic dimension $d=\sqrt{z_0^{2}+r_0^{2}/2}$ represents the length scale between electrodes defined by the distance from the center to the end caps $z_0$ and to the ring $r_0$. 
+
+Solving equation \eqref{eq:electric_field-electric_potential} for equation \eqref{eq:electric_potential} yields
+
+\begin{equation}
+\label{eq:solved_electric_field}
+\begin{split}
+\mathbf{E} & = - \nabla V \quad \\
+& = - \frac{V_0}{2d^{2}} \nabla \left[2z^{2}-x^{2}-y^{2}\right] \\
+& = - \frac{V_0}{2d^{2}} 
+\bigl\langle 
+2x, 2y, -4z
+\bigr\rangle \quad ,
+\end{split}
+\end{equation}
+
+which implies that a charge particle $q$ will be trapped axially (the $z$ direction) due to ... . To trap radially the Penning trap imposes a homogeneous magnetic field 
+\begin{equation}
+\label{eq:magnetic_field}
+\mathbf{B} = \bigl\langle 
+0, 0, B_0
+\bigr\rangle \quad ,
+\end{equation}
+
+where $B_0 > 0$ is the magnitude of the field strength. Modelling a charged particle as a point charge, it will set up an electric field in position $\mathbf{r}$ that is proportional to the particle charge $q$ and the distance from the particle and an arbitary position $\mathbf{r}$. If the Penning trap host's multiple point charges $\{q_1, \dots, q_n\}$ with positions $\{\mathbf{r}_1, \dots, \mathbf{r}_n\}$ they will set up an electric field given by the superposition of the individual fields setup by particle $j$. The resulting field is given by 
+\begin{equation}
+\label{eq:electric_field_particles}
+\mathbf{E} = k_e \sum\limits_{j=1}^n \frac{\mathbf{r}-\mathbf{r}_j}{|\mathbf{r}-\mathbf{r}_j|^{3}} \quad.
+\end{equation}
+
+
+\subsection{The equations of motion}
+
+For the Penning trap the time evolution of a particle is given by Newton's second law 
+\begin{equation}
+\label{eq:newtons_second_law_Penning_trap}
+m \mathbf{\ddot{r}}  = \sum_i \mathbf{F_i} \quad ,
+\end{equation}
+where $\mathbf{\ddot{r}}:=\frac{d^{2}\mathbf{r}}{dt^{2}}$ is the acceleration of the particle given its position in space $\mathbf{r}$ and $\mathbf{F}$ is the Lorentz force
+
+\begin{equation}
+    \label{eq:Lorentz-force}
+    \mathbf{F} = q\mathbf{E} + q \mathbf{v} \times \mathbf{B} \quad .
+\end{equation}
+
+Here $\mathbf{E}$ is given by equations \eqref{eq:solved_electric_field} and \eqref{eq:electric_field_particles} however for this derivation we assume the number of particles to be one so we leav out the interactions. The cross product is solved as 
+
+\begin{equation}
+\label{eq:cross_product}
+\begin{split}
+q \mathbf{v} \times \mathbf{B} & =  q \bigl\langle 
+\dot{x}, \dot{y}, \dot{z}
+\bigr\rangle \times \bigl\langle 
+0, 0, B_0
+\bigr\rangle \\
+&= qB_0 \bigl\langle
+\dot{y}, -\dot{x}, 0
+\bigr\rangle 
+\end{split} \quad .
+\end{equation}
+
+Substituting equation \eqref{eq:solved_electric_field} \eqref{eq:cross_product} and \eqref{eq:Lorentz-force} into equation \eqref{eq:newtons_second_law_Penning_trap} yields the equation 
+
+\begin{equation*}
+m \mathbf{\ddot{r}} = - q \frac{V_0}{2d^{2}} 
+\bigl\langle 
+2x, 2y, -4z
+\bigr\rangle + qB_0 \bigl\langle
+\dot{y}, -\dot{x}, 0
+\bigr\rangle  \quad,
+\end{equation*}
+
+which for $\hat{e}_x$ becomes
+
+\begin{equation}
+\label{eq:eq_of_motion_x}
+\begin{split}
+m \ddot{x} & = q(- \frac{V_0}{2d^{2}}2x + B_0 \dot{y}) \\
+\ddot{x}  &= \omega_0 \dot{y} + \frac{1}{2} \omega_z^{2} x
+\end{split}
+\end{equation}
+
+by defining $\omega_0 :=\frac{qB_0}{m}$ and $\omega_z^{2} := \frac{2qV_0}{md^{2}}$. Similarly for $\hat e_y$ the equation becomes 
+\begin{equation}
+\label{eq:eq_of_motion_y}
+\ddot{y}  = \omega_0 \dot{x} + \frac{1}{2} \omega_z^{2} y \quad ,
+\end{equation}
+
+while for $\hat e_z$ we have $qB_0 \cdot 0$ so the expression simplifies to 
+
+\begin{equation}
+\label{eq:eq_of_motion_z}
+\ddot z = - \omega_z^{2} z \quad .
+\end{equation}
+
+From these equations it is apperent that ... enhetsvektorene styrt av elektrisk og magnetisk potensial. 
+
+The system of equations \eqref{eq:eq_of_motion_x}, \label{eq:eq_of_motion_y} and \label{eq:eq_of_motion_z} consists of three equations where equation \eqref{eq:eq_of_motion_x} and \eqref{eq:eq_of_motion_y} are coupled. To find a general solution, start by rewriting these in terms of one differential equation by introducing a complex function $f(t)=x(t) + iy(t)$. Since $i= \sqrt{-1}$ is a \textit{const.} the first- and second-order derivatives become (using the dot notation and omitting the dependency towards $t$) $\dot f = \dot x + i \dot y$ and $\ddot f = \ddot x + i \ddot y$, respectively. By substituting equations \eqref{eq:eq_of_motion_x} and \eqref{eq:eq_of_motion_y}, solved for $x$ and $y$ respectively, into the complex function the pair can be compressed into one equation 
+
+\begin{equation}
+\label{eq:eq_of_motion_f}
+\begin{split}
+    f & = x + iy \\
+    f & = (\ddot{x} - \omega_0 \dot{y}) \frac{2}{\omega_z^{2}} + i (\ddot{y} - \omega_0 \dot{x}) \frac{2}{\omega_z^{2}} \\
+    \frac{1}{2} \omega_z^{2} f & = \ddot{x} + i\ddot{y} - \omega_0 \dot{y} - i \mega_0 \dot{x} \\
+    \ddot{f} - \frac{1}{2} \omega_z^{2} f &= - \omega_0 ( \dot{y} +i \dot{x}) \\
+    \ddot{f} & = \frac{1}{2} \omega_z^{2} f - i \omega_0 \dot{f}
+\end{split}
+\end{equation}
+
+where we have identified that $\dot{y} +i \dot{x}$ in line four is equal to the imaginary unit times the complex conjugate of $f$; $i\dot{f}^* = i(\dot{x} - i\dot{y}) = \dot{y} + i \dot{x}$. Since $\dot{f}$ is a scalar and not a vector, it represents the \textit{speed} and not the \textit{velocity}, that consequence is that it is a real valued function of time and thus $\dot{f}^* = \dot{f}$. This equation describes the particle movement in the radial plane (xy-plane).
+
+The general solution to \eqref{eq:eq_of_motion_f} is 
+\begin{equation}
+\label{eq:general_solution-eq_of_motion_f}
+    f(t) = A_+ e^{-i(\omega_+ t + \phi_+)} + A_- e^{-i(\omega_- t + \phi_-)} \quad ,
+\end{equation}
+
+where $\phi_+$ and $\phi_-$ are constant phases, the amplitudes $A_+$ and $A_-$ are positive, and 
+$$
+\omega_\pm = \frac{\omega_0 \pm \sqrt{\omega_0^2 - 2\omega_z^2}}{2} \quad.
+$$
+The physical coordinates are then found as $x(t) = \text{Re}\big[f(t)\big]$ and $y(t) = \text{Im} \big[f(t)\big]$.
+
+To obtain a bounded solution for the movement in the radial plane, we require $|f(t)| < \infty$ as $t\to \infty$. This implies that constraining the frequencies $\omega_\pm$ to be real as complex roots will make the exponent of the exponentials in equation \eqref{eq:general_solution-eq_of_motion_f} positive, which will lead to a violation of the constraint in $f(t)$. To ensure real roots, we need 
+
+\begin{equation}
+\label{eq:frequency_constraint}
+\begin{split}
+    \omega_0^{2} - 2\omega_z^{2} &\geq 0 \\ 
+    \frac{q^{2}B_0^{2}}{m^{2}} - 2\left(\frac{2qV_0}{md^{2}}\right) & \geq 0 \\
+    \frac{q^{2}B_0^{2}}{m^{2}} & \geq 4 \frac{qV_0}{md^{2}} \\
+    \frac{B_0^{2}d^{2}}{V_0} &\geq \frac{m}{q} \quad ,
+\end{split}
+\end{equation}
+
+which means that the ratio between particle mass and charge must be less than or equal to the ratio between the squared product of the magnetic field strength and the characteristic length and the electric field strength. Physically, this implies that a stronger magnetic field is required if the electric field strength is increased. It also implies that increasing $B_0$ will make it easier to meet the stability requirement and that decreasing $d$ will reduce the stability given fixed values of $B_0$ and $V_0$.  
+
+It is also important to find the bounds of the particle's distance from the origin in the radial plane. To find the upper bound $R_+$ we need to maximize the exponential parts of equation \eqref{eq:general_solution-eq_of_motion_f} 
+
+\subsection{Benchmark solution}
+
+To benchmark the numerical modelling of this initial value problem we will derive a specific analytical solution for a single particle $p$, defined in the project description \cite{prosjekttbeskrivelse3}. The particle $p$ holds a charge $q$ and mass $m$ while it is in the Penning trap. Initially it occupies the position 
+$\mathbf{r_0} = \bigl\langle x(0), y(0), z(0) \bigr\rangle = \bigl\langle x_0, 0, z_0 \rangle$ and has the initial velocity $\mathbf{v}_0 = \bigl\langle 
+\dot{x}(0), \dot{y}(0), \dot{z}(0)
+\bigr\rangle = \bigl\langle 
+0, v_0, 0 \bigr\rangle$. Further the specific solution to equation \eqref{eq:eq_of_motion_z} given the initial position $z_0$ is 
+\begin{equation}
+\label{eq:specific_solution-eq_of_motion_z}
+z(t) = z_0 cos(\omega_z t) \quad.
+\end{equation}
+
+Further, the \textit{specific} solution to equation \eqref{eq:general_solution-eq_of_motion_f} is given by the amplitudes and phases 
+\begin{equation*}
+\begin{split}
+    A_+ & = \frac{v_0 + \omega_-x_0}{\omega_- - \omega_+} \quad ,\\
+    A_- & = - \frac{v_0 + \omega_+ x_0}{\omega_- - \omega_+} \quad , \\
+    \phi_+ &= 0\quad , \\
+    \phi_- & = 0    \quad.
+\end{split}
+\end{equation*}
+
+We will use singly-charge calcium ions (Ca$^{+}$) as our particles for this project and the units will be; the micrometre ($\textrm{\mu m}$) for length, microseconds ($\textrm{\mu s}$) for time, the atomic mass unit ($\textrm{u}$) for mass and the  elementary charge ($\textrm{e}$) for charge.  This is done to reduce round-off errors that occur when working with very small numbers e.g. when considering the particle mass $m_{Ca^{+}} = 40.078 ~\mathrm{u}$ which is on the order of $10^{1}$ instead of $\mathcal{O}(m_{Ca} (kg)) = 10^{-26}$ (using $m_{Ca^{+}}\approx m_{Ca}$ since the mass of the added electron is negligible $\mathcal{O}(m_{e}) = 10^{-31} \mathrm{kg} << \mathcal{O}(m_{Ca})$).
+
+In these units, the Coulomb constant is $k_e = 1.38935333 \times 10^5 \, \frac{\textrm{u} \, (\textrm{\mu m})^3}{(\textrm{\mu s})^2 \, \textrm{e}^2}$ and the derived SI units for the magnetic field strength (Tesla, $\textrm{T}$) and the electric potential (Volt, $\textrm{V}$) become $\mathrm{T} = 9.64852558 \times 10^1 \, \frac{\mathrm{u}}{(\mathrm{\mu s}) \, \mathrm{e}}$ and $\mathrm{V} = 9.64852558 \times 10^7 \, \frac{\mathrm{u} \, (\mathrm{\mu m})^2}{(\mathrm{\mu s})^2 \, \mathrm{e}}$.
+
+Further, for a benchmark solution we set the magnetic field strength to $B_0 = 1.00\,\mathrm{T} \simeq 9.65 \times 10^1 \, \frac{\mathrm{u}}{(\mathrm{\mu s}) \, \mathrm{e}}$, the applied potential to $V_0 = 25.0\,\mathrm{mV} \simeq 2.41 \times 10^6 \, \frac{\mathrm{u} \, (\mathrm{\mu m})^2}{(\mathrm{\mu s})^2 \, \mathrm{e}}$ and the Penning trap characteristic dimension to $d = 500\,\mathrm{\mu m}$. Throughout the derived equations $V_0$ and $d$ only appear as the ratio $\frac{V_0}{d^{2}} = \frac{25 \mathrm{mV}}{500 \mathrm{\mu m}} = 9.65  \frac{\mathrm{u}}{(\mathrm{\mu s})^2 \, \mathrm{e}}$.
+
+
+Considering the initial values $x_0 = z_0 = 20 \mathrm{\mu m}$ and $v_0 = 25 \mathrm{\mu m \mu s^{-1}}$ the solution, simulating a single Ca$^{+}$ ion from $t=0\mathrm{\mu s}$ to $t= 50 \mathrm{\mu s}$ becomes:
+
+\begin{equation*}
+\begin{split}
+    
+\end{split}
+\end{equation*}
+
+\subsection{dummy method's}
 
 \textit{The main purpose of the ``Methods'' (or ``Theory'', or ``Algorithms'') section is to provide the reader with the necessary background knowledge to understand the work you will present.\footnote{Note that to get correct quotation marks in LaTeX, you cannot simply use the quotation mark symbol on your keyboard. Check the \texttt{.tex} file for this document to see the correct approach.} It should in general be sufficiently detailed for the reader to understand and reproduce what you have done. However, sometimes it can be a good idea to relegate the discussion of some technical topic to an appendix, to avoid too long discussions of what might be a a fairly minor or technical detail. You are of course free to divide this section into subsections, which we will do below.}
 
