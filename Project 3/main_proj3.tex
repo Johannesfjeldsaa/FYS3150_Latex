@@ -7,8 +7,8 @@
 \twocolumn[
 \begin{@twocolumnfalse}
 \title{
-Solution to Project 3 in FYS3150 Computation Physics  \\
-\huge modelling the Penning trap 
+Simulating the Penning trap:  \\
+\huge Fundamentals of electromagnetics in the trap and uncovering resonance frequencies 
 }      % self-explanatory
 \author{by: Johannes Fjeldså}          % self-explanatory
 \date{\today}                             % self-explanatory
@@ -17,7 +17,7 @@ Solution to Project 3 in FYS3150 Computation Physics  \\
 
 %This is how we create an abstract section.
 \begin{abstract}
-    \noindent We provide an overview of how to structure a scientific report. For concreteness, we consider the example of writing a report about an implementation of the midpoint rule of integration. For each section of the report we briefly discuss what the purpose of the given section is. We also provide examples of how to properly include equations, tables, algorithms, figures and references.
+    \noindent Penning traps provided technical solution on how to perform more stable measurements of charged particles, an ability that is crucial when investigating the fundamentals of particle physics. In this report we firstly derive the relations needed to numerically simulate the trap. Secondly we perform investigations of the Penning traps fundamental physics and our simultors numerical stability. Results show that a fourth order Runga-Kutta solver is able to achieve full accuracy down to five decimal points against analytical solutions when the step size is put at $h=1.5625*10^{-3}$. Further the existence of resonance behavior is investigated showing that an increase in the electric field strength reduces the Penning trap stability. Results also suggest that particle interactions via Coulomb forces also decrease the trap stability.   
 \end{abstract}
 
 \end{@twocolumnfalse}
@@ -34,13 +34,17 @@ Solution to Project 3 in FYS3150 Computation Physics  \\
 % =====================
 % Methods and theory
 % =====================
-
+\section{Methods and theory \protect\footnote{
+Theory based on the course compendium and project description \cite{prosjekttbeskrivelse3}.
+}}\label{sec:methods_and_theory}
 \subfile{sections/methods_and_theory}
+
 
 
 % ==========
 % Results
 % ==========
+\section{Results and discussion}\label{sec:results_and_discussion}
 
 \subfile{sections/results_and_discussion}
 
@@ -59,5 +63,28 @@ Solution to Project 3 in FYS3150 Computation Physics  \\
 \twocolumn[
 \printbibliography
 ]
+\newpage
+\onecolumn
+
+\appendix
+
+
+\section{Figures of interacting particles}
+
+Figure \ref{fig:phase-space} and \ref{fig:two_particles_3d} are additional results used to visualize the verification of code functionality. 
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=.9\linewidth]{Project 3/figures/two_particles_v-vs-r.png}
+    \caption{The phase-space plots for two particles. Upper row shows the velocity in the x plane as a function of x position and lower shows corresponding for y.}
+    \label{fig:phase-space}
+\end{figure}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=.9\linewidth]{Project 3/figures/two_particles_3d.png}
+    \caption{The particle position in 3d. The particles are displayed in separate plots for illustration proposes but are simulated in the same Penning trap simultaneously. }
+    \label{fig:two_particles_3d}
+\end{figure}
 
 \end{document}
