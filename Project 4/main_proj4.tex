@@ -1,0 +1,90 @@
+\documentclass[12pt,a4paper,twocolumn]{article}
+\input{../preamble.tex}
+
+
+\begin{document}
+
+\twocolumn[
+\begin{@twocolumnfalse}
+\title{
+The two-dimensional ising model:  \\
+\huge Steady state solutions of paramagnets using markov-chain monte-carlo sampling 
+}      % self-explanatory
+\author{by: Johannes Fjeldså}          % self-explanatory
+\date{\today}                             % self-explanatory
+
+\maketitle 
+
+%This is how we create an abstract section.
+\begin{abstract}
+    \noindent    
+\end{abstract}
+
+\end{@twocolumnfalse}
+]
+
+
+% ===============
+% Introduction
+% ===============
+
+\subfile{sections/introduction}
+
+
+% =====================
+% Methods and theory
+% =====================
+\section{Methods and theory \protect\footnote{
+Theory based on the course compendium and project description \cite{prosjekttbeskrivelse3}.
+}}\label{sec:methods_and_theory}
+\subfile{sections/methods_and_theory}
+
+
+
+% ==========
+% Results
+% ==========
+\section{Results and discussion}\label{sec:results_and_discussion}
+
+\subfile{sections/results_and_discussion}
+
+
+% =============
+% Conclusion 
+% =============
+
+\subfile{sections/conclusion}
+
+% ======
+% Bib
+% ======
+
+\newpage 
+\twocolumn[
+\printbibliography
+]
+\newpage
+\onecolumn
+
+\appendix
+
+
+\section{Figures of interacting particles}
+
+Figure \ref{fig:phase-space} and \ref{fig:two_particles_3d} are additional results used to visualize the verification of code functionality. 
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=.9\linewidth]{Project 3/figures/two_particles_v-vs-r.png}
+    \caption{The phase-space plots for two particles. Upper row shows the velocity in the x plane as a function of x position and lower shows corresponding for y.}
+    \label{fig:phase-space}
+\end{figure}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=.9\linewidth]{Project 3/figures/two_particles_3d.png}
+    \caption{The particle position in 3d. The particles are displayed in separate plots for illustration proposes but are simulated in the same Penning trap simultaneously. }
+    \label{fig:two_particles_3d}
+\end{figure}
+
+\end{document}
