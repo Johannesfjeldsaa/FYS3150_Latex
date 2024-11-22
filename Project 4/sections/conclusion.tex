@@ -1,7 +1,13 @@
-\documentclass[../main_proj4.tex]{subfiles}
+\documentclass[../main_proj4_correct_template.tex]{subfiles}
 
 \graphicspath{{\subfix{Figures/}}}
 
 \begin{document}
+
+
+\section{Conclusion}\label{sec:conclusion}
+
+
+In this study, we have investigated an MCMC implementation to sample microstates of the two-dimensional Ising model. To benchmark the simulations, we derived the analytical expressions for energy, magnetization heat capacity, and magnetic susceptibility per dipole using Boltzmann statistics for the $2\times 2$ model. Results showed numerical convergence towards the analytical value after $10^{4}$ to $10^{5}$ Monte Carlo cycles. Although an analytic benchmark was not used for larger lattice sizes, the same equilibration time was shown for convergence to equilibrium states for a $20 \times 20$ lattice as well. Further, we used samples from two temperatures, at $T=1~J/k_B$ and $T=2.4~J/k_B$, to construct density functions for their Boltzmann distributions. These showed that the equilibrium state was much more stable for lower temperatures compared to temperatures above the assumed Curie temperature given by analytical expressions to be $2.269~J/k_B$. Next, we used the simulator to investigate the dependency of lattice size to try to understand whether or not phase transitions are present in the model. The results showed a strong phase transition between magnetic domains around $T_c$. Here we also observed that the larger models were closer to replicating a divergence near $T_c$, indicating that they are more realistic. Lastly, we used the magnetic susceptibility to estimate $T_c(L),$ which allowed us to perform a regression analysis to estimate $T_c(L=\infty)$. Results showed that this is a promising estimation method; however, due to faulty implementation of parallel computation, the sampling rate in both the temperature and lattice size domains was small. For future work, the first implementation would therefore be to implement the more computationally efficient method as well as trying to do uncertainty quantification of the regression beyond the $R^{2}$ value.
 
 \end{document}

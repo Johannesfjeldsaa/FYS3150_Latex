@@ -1,0 +1,324 @@
+\documentclass[../main_proj4_correct_template.tex]{subfiles}
+
+\graphicspath{{\subfix{Figures/}}}
+
+\begin{document}
+
+\section{Theory}\label{sec:p4theory}
+
+\subsection{The ising model}
+
+The Ising model consists of $N$ atomic dipoles for which the state of each individual dipole, denoted by $s_k$, takes on the values $\in \{-1, +1\}$ (for illustration purposes, we introduce the notation $\downarrow := -1$ and $\uparrow := +1$). Further we let the vector $\mathbf{s} = \{s_1, s_2, \dots, s_N\}$ denote the dipole configuration or microstate and let $\mathcal{S}$ be a finite set containing all allowed microstates. The total energy of the system is given by equation \eqref{eq:p4-tot_energy} and is proportional to the coupling constant $J$ which is the energy associated with the interaction between neighboring dipoles $k$ and $l$. 
+
+\begin{equation}
+\label{eq:p4-tot_energy}
+    E(\mathbf{s}) = -J \sum\limits_{\langle kl \rangle}^N s_k, s_l 
+\end{equation}
+
+\noindent Here $\langle kl \rangle$ denotes a summation over all neighboring pairs of dipoles without double counting. Since the dipoles are unitless, we set the unit of energy to be the coupling constant $[E] = J$. This representation of the energy implies that aligned dipole pairs contribute $-1J$ to the sum while opposite pairs contribute with $+1J$. As previously introduced, if aligned dipoles dominate, the material is considered a ferromagnet. Further, the dominating direction will reflect the dominant magnetic moment, and so the sum of individual dipoles represents the total magnetization
+
+\begin{equation}
+\label{eq:p4_magnetization}
+    M(\mathbf{s}) = \sum\limits_{\langle k \rangle}^N  s_k \quad. 
+\end{equation}
+
+\noindent Since dipoles are unitless, the magnetization is so, that is, $[M] = 1$. To enable comparison between models of different sizes, we introduce energy per dipole $\epsilon(\mathbf{s}) = E(\mathbf{s})/N$ and magnetization per dipole $m(\mathbf{s}) = M(\mathbf{s})/N$. These will have units $J/s$ and $1/s$, respectively. 
+
+The Ising model is a highly simplified model of a ferromagnet and is not an accurate representation, most notably for lower temperatures. However, closer to the Curie temperature, that is, the critical temperature for which the net magnetization of the ferromagnet becomes zero, it is a more accurate representation \cite{thermal_physics}. This is also the temperature domain of main focus in this study.
+
+\subsection{Statistical analysis of the Ising model}
+
+In this study, we want to investigate the properties of the Ising model close to or at the critical temperature. Since the model is valid for any $N$, it has many degrees of freedom, making direct analysis unattainable. The model is therefore analyzed using Boltzmann statistics, where the observation probability of a state $\mathbf{s}_j$ (at temperature $T$) is governed by the Boltzmann distribution
+
+\begin{equation}
+\label{eq:p4_Boltzmann_distribution}
+    P(\mathbf{s_j}; T) = \frac{1}{Z} e ^{-\beta E(\mathbf{s_j})} \quad.
+\end{equation}
+
+\noindent Here $Z$ is the partition function and $\beta=1 / k_B T$ with $k_B$ being the Boltzmann constant. By utilizing $k_B$ \say{as is} the unit for temperature becomes $[T] = J/k_B$ following from $\frac{[E(\mathbf{s})]}{k_B[T]} = 1$. In equation \eqref{eq:p4_Boltzmann_distribution} the ratio $1 / Z$ serves as the normalization factor of the probability distribution, and so to derive the expression for the partition function we know that we must fulfill (since we have discrete spin configurations) $\sum_{\mathbf{s}_{j}} P(\mathbf{s}_j;T) = 1$. Substituting equation \eqref{eq:p4_Boltzmann_distribution} into this condition and solving for $Z$ yields the general expression for the partition function
+
+\begin{equation}
+    \label{eq:p4_partition_function}
+    Z = \sum\limits_{\mathbf{s_j}} e^{-\beta E(\mathbf{s_j})} \quad .
+\end{equation}
+
+\noindent This will be a constant for a given $T$.
+
+Boltzmann statics allows us to use the first- and second-order moments of energy and magnetization to investigate the model's thermodynamic properties. The first-order moments, also known as the expectation values, are given by 
+
+\begin{equation}
+\label{eq:p4_expectation_energy}
+    \mathbb{E}[\epsilon] 
+    = \frac{1}{N} \sum\limits_\mathbf{s_j} E(\mathbf{s}_j) P(\mathbf{s}_j)
+    \quad ,
+\end{equation}
+and 
+\begin{equation}
+    \mathbb{E}[|m|] 
+    = \frac{1}{N} \sum\limits_\mathbf{s_j} |M(\mathbf{s}_j) |P(\mathbf{s}_j)
+    \quad ,
+\end{equation}
+
+\noindent for the energy per dipole and magnetization per dipole respectively. Here we use only the magnitude of the magnetization ($|M|$ as opposed to $M$) because our focus is on the \textit{magnitude} of magnetization as opposed to \textit{what} magnetization we will find \cite{prosjekttbeskrivelse4}. 
+
+The heat capacity per dipole $C_V(T)/N$ (the heat needed to change the temperature of the material per dipole) is related to the first- ($\mathbb{E}[\epsilon]$) and second-order ($\mathbb{E}[\epsilon^{2}]$) moment of the energy via the variance. That is, we can express it by 
+
+\begin{equation}
+\label{eq:p4_heat_capacity}
+    \frac{C_V(T)}{N} = \frac{N}{k_BT^{2}} \operatorname{Var}(\epsilon)
+    \quad .
+\end{equation}
+
+\noindent The heat capacity per dipole has the unit $k_B/s$. Similarly the first- ($\mathbb{E}[|m|]$) and second-order ($\mathbb{E}[m^{2}]$) moment of the magnetization is related to the susceptibility of the material $\chi(T)$ by 
+
+\begin{equation}
+\label{eq:p4_susceptibility}
+    \frac{\chi(T)}{N} = \frac{N}{k_BT} \operatorname{Var}(m) 
+    \quad .
+\end{equation}
+
+\noindent The susceptibility per dipole has the unit $(Js)^{-1}$. Note that it is no longer required to take the absolute value of $m$ for the second-order moment as the squaring removes the possibility of a negative sign. The susceptibility of a material describes to what degree applying a magnetic field will magnetize the ferromagnet. Below the Curie temperature, the susceptibility of a ferromagnet is high, i.e., allowing maintained magnetization even without an applied field. However, since $\chi \propto T^{-1}$, the susceptibility will decrease as the temperature approaches the Curie temperature.
+
+
+\subsection{Phase transitions\footnote{Heavally based on descriptions from \cite{prosjekttbeskrivelse4}.}}
+
+A phase transition refers to a changes in the structure or state of a material, such as from solid to liquid or between different crystal structures. These changes will find place at some critical value of macroscopical properties, such as the Curie temperature for magnetization. 
+
+Close to this critical value we describe this behaviour by powerlaws where the exponentials are called critical exponents. It can be shown that close to $T_c$ the magnetization, heat capacity and suceptibility will be proportional to the temperature deviation raised to the critical exponent:
+
+\begin{equation}
+    \mathbb{E}[|m|] \propto | T-T_c(L=\infty)|^{\beta}, 
+\end{equation}
+\begin{equation}
+\label{eq:p4cv1}
+    \frac{C_V}{N}\propto | T-T_c(L=\infty)|^{-\alpha} \quad , \text{ and}
+\end{equation}
+\begin{equation}
+\label{eq:p4chi1}
+    \frac{\chi}{N}\propto | T-T_c(L=\infty)|^{-\gamma} \quad.
+\end{equation}
+
+For the two-dimensional Ising model the critical exponents are $\beta=1/8$, $\alpha=0$ and $\gamma = 7/4$. Through the phase transition the change in state is quantified using the correlation length
+
+\begin{equation}
+    \label{eq:p4_correlation_len}
+    \zeta = |T - T_c(L=\infty)|^{-\nu} \quad, 
+\end{equation}
+
+where $\nu=1$. Since we are using a Ising model with finite size $L$ the largest possible correlation length is $\zeta=L$. Using this, we get that for $T$ close to $T_c(L)$ the magnetization, heat capacity and suceptibility becomes proportional to 
+
+\begin{equation}
+    \mathbb{E}[|m|] \propto L^{-\beta/\nu}\quad , 
+\end{equation}
+\begin{equation}
+\label{eq:p4cv2}
+    \frac{C_V}{N}\propto L^{\alpha/\nu} \quad, 
+\end{equation}
+\begin{equation}
+\label{eq:p4chi2}
+    \frac{\chi}{N}\propto L^{\gamma/\nu} \quad.
+\end{equation}
+
+Further, using the relations close to $T_c$ it is possible to show that 
+
+\begin{equation}
+    T_c(L=\infty) = T_c(L) - aL^{-1} \quad, 
+\end{equation}
+
+meaning that estimation of the the critical temperature for a infinantly large Ising model can be done by finding the linear fit between the $T_c(L)$ and the inverse of $L$. 
+
+
+% ===========================================================================
+% Method
+% ===========================================================================
+
+\section{Method}\label{sec:p4_method}
+
+\subsection{The Metropolis algorithm}
+
+For a smaller two-dimensional lattice, e.g., one consisting of $2\times 2$ dipoles, there are $2^{4}=16$ possible microstates. For a still very small lattice of $10\times 10$ dipoles, the number of microstates becomes on the order of $10^{30}$, and so calculation of expectation values explicitly (e.g., by equation \eqref{eq:p4_expectation_energy}) becomes impossible. Further randomly sampling from the microstates, e.g., taking one billion states, will only allow us to cover $\sim 8\cdot10^{-20} \%$ of the microstates, and so this is not an appropriate approach either.
+
+To sample from distributions like the Boltzmann distribution of equation \eqref{eq:p4_Boltzmann_distribution} a common solution is using the Markov chain Monte Carlo (MCMC) method \cite{lecture_notes}. The general sampling procedure consists of :
+\begin{itemize}
+    \item Generate a new candidate state $\mathbf{s}_{i+1}'$ from a proposal probability function that is only dependent upon the current state $\mathbf{s}_i$.
+    \item Use an acceptance rule to decide which value $\mathbf{s}_{i+1}$ takes:
+    \begin{itemize}
+        \item if accepted $\mathbf{s}_{i+1} = \mathbf{s}_{i+1}'$
+        \item if rejected $\mathbf{s}_{i+1} = \mathbf{s}_i$
+    \end{itemize}
+    \item reiterate.
+\end{itemize}
+
+\noindent The result is an algorithm where the next state is only dependent on the previous one (fulfilling the Markov property \cite{Linear_Algebra_and_its_Applications}). In this study we use the Metropolis algorithm, a special case of MCMC where the low-energy microstates will occur more frequently, thus biasing the sampling towards states that are more probable, given the second law of thermodynamics \cite{thermal_physics}. The full procedure of running the Metropolis algorithm for $n_{\operatorname{cycles}}$ Monte Carlo cycles (one cycle being a pass through $N$ samples) will be:
+
+\begin{itemize}
+    \item Initialize the system in a random state. For the Ising model this implies generating a random microstate of the lattice.
+    \item For each Monte Carlo cycle $n$ while $n < n_{\operatorname{cycles}}$ we:
+    \begin{itemize}
+        \item Iterate through $N$ samples for which we propose a new candidate microstate $\mathbf{s}_{i+1}'$ by choosing a random dipole $s_k$ and calculating the change in total energy $\Delta E = E_{\operatorname{after}} - E_{\operatorname{before}}$ resulting from the flip of the dipole. 
+
+        \begin{itemize}
+            \item If $\Delta E \leq 0$ the new microstate is thermodynamically favorable and so we flip $s_k$. 
+            \item If $\Delta > 0$ we only flip $s_k$ if the ratio between probabilities $\frac{P\big(E(\mathbf{s}_i) \big)}{P\big(E(\mathbf{s}_{i+1}') \big)}$ is greater than or equal to a random number $r\sim U(0,1)$.
+        \end{itemize}
+        
+        \item Reiterate until the sampling count reaches $N$.
+    \end{itemize}    
+    \item At the end of each cycle we use the resulting state $\mathbf{s}$ and store the energy and magnetization of the system. In addition we can also track the estimates of the expectation values and use them to calculate other derived properties.
+\end{itemize}
+
+\noindent Here we recognize the overall structure from MCMC while the acceptance procedure is what makes this the Metropolis algorithm \cite{lecture_notes}. 
+
+
+\subsection{Analytical benchmarking}\label{sec:p4_method_benchmark}
+
+In his 1944 paper Lars Onsanger derived the expression for the Curie temperature of the two-dimensional Ising model for all values of $L\in[2, \infty)$ to be \cite{onsanger_crystal_stat} 
+\begin{equation}
+    \label{eq:p4_critical_temp}
+    T_c = \frac{2}{\ln[1 + \sqrt{2}]} \frac{J}{k_B} \approx 2.269 \frac{J}{k_B} \quad.
+\end{equation}
+
+\noindent This is the temperature for which we expect the magnetization to move towards net zero. To investigate the properties that indicates this material state, we will mainly focus on the numerical solution using MCMC. However, as a benchmark, we also derive the analytical expressions for the $2\times 2$ lattice version of the model. For a $N=4$ lattice, the spin configuration is denoted by the matrix $\mathbf{s} = \begin{bmatrix} s_{1,1} & s_{1,2} \\ s_{2,1} & s_{2,2}\end{bmatrix}$. Letting the number of spins in the $\uparrow$ state be denoted by $N\uparrow$, we have five macrostates, that is, $N\uparrow \in [0, 4]$. A given configuration of $\mathbf{s}$ that realizes the macrostates is termed a microstate. The total number of microstates is given by raising two to the power of $N$. The number of microstates is therefore $N = 2^{4}=16$ microstates. All the possible $\mathbf{s}$'s make up $\mathcal{S}$ for this lattice. Further, the degeneracy of macrostates, which we refer to as multiplicity, is given by
+
+\begin{equation}
+    \label{eq:p4_multiplicty}
+    \Omega(N\uparrow) = \begin{pmatrix} N \\ N\uparrow \end{pmatrix} = \frac{N!}{N \uparrow ! N \downarrow !} \quad,
+\end{equation}
+
+\noindent where $N \downarrow$ is the number of spins in a down state given by $N\downarrow = N - N \uparrow$ \cite{thermal_physics}. Table \ref{tab:p4_2x2lattice} shows the total energy and magnetization of each macrostate (see Appendix \ref{app:p4_AppendixA_microstates} for detail on microstate structures and energy). In addition the table shows the degeneracy within the macrostate.
+
+
+\begin{table}[h!]
+    \centering
+    \caption{The energy and magnetization associated with each macrostate. The degeneracy column shows the multiplicity, degeneracy of the energy level and degeneracy of magnetization within the macrostate.}
+    \begin{tabular}{cccc}
+    \toprule
+    Macrostate $N\uparrow$ & Energy $E~(J)$  & Magn. $M~(1)$ & Degeneracy\\ \midrule
+    0  & $-8$ & -4 & 1, 1, 1 \\
+    1  & $0$  & -2 & 4, 4, 4\\
+    2  & $0/0/8$ & 0 & 6, 2/2/2, 6\\
+    3  & $0$  & 2  & 4, 4, 4 \\
+    4  & $-8J$ & 4  & 1, 1, 1\\ \bottomrule
+    \end{tabular}
+    
+    \label{tab:p4_2x2lattice}
+\end{table}
+
+Using table \ref{tab:p4_2x2lattice} we can derive analytical expressions for the partition function as well as the statistical modes. The derivations are shown in \ref{app:p4_AppendixA_analyticalexpressions}. The partition function of equation \eqref{eq:p4_partition_function} have the specific analytical solution 
+
+\begin{equation}
+\label{eq:p4_partition_function_2x2analytical}
+    Z = 12 + 4\cosh(8J\beta) \quad.
+\quad.
+\end{equation}
+
+\noindent The first- and second-order moments for $\epsilon$ and $m$ are 
+\begin{equation}
+\label{eq:p4_<eps>}
+    \mathbb{E}[\epsilon] = - \frac{1}{N}\frac{32Jsinh(8J\beta)}{Z} \quad,
+\end{equation}
+\begin{equation}
+\label{eq:p4_<eps2>}
+    \mathbb{E}[\epsilon^{2}] = \frac{1}{N^{2}}\frac{256 J^{2} cosh(8J\beta)}{Z} \quad,
+\end{equation}
+\begin{equation}
+\label{eq:p4_<|m|>}
+    \mathbb{E}[|m|]= \frac{8}{N} \frac{2+e^{\beta 8 J}}{Z} \quad,
+\end{equation}
+\begin{equation}
+\label{eq:p4_<m2>}
+    \mathbb{E}[m^{2}] = \frac{32}{N^{2}} \frac{1+ e^{\beta 8J}}{Z} \quad.
+\end{equation}
+
+\noindent Next these moments can be used   to construct the variance term of a variable by $\operatorname{Var(x)} = \Big[\mathbb{E}[x^{2}] - (\mathbb{E}[x])^{2}\Big]$. By substituting the appropriate expectation values: \eqref{eq:p4_<eps>} and \eqref{eq:p4_<eps2>} into the heat capacity equation \eqref{eq:p4_heat_capacity}, and  \eqref{eq:p4_<|m|>} and \eqref{eq:p4_<m2>} into the susceptibility equation \eqref{eq:p4_susceptibility} we can get the full analytical expressions which are shown in Appendix \ref{app:p4a_Cv} and \ref{app:p4a_chi}.
+
+
+\section{Implementation}\label{sec:p4_implementation}
+
+\subsection{Random numbers}
+
+To run the Metropolis algorithm we use random numbers both to initialize the Ising model lattice and to evaluate the acceptance of dipole flips when $\Delta E > 0$. For this study we use the pseudorandom number generator (PRNG) ''Mersenne Twister``. This PRNG is implemented in the ''random`` library in CPP and has a period of more then $10^{6001}$ \cite{lecture_notes}. This period is much larger then the number of samples used in this study, thus ensuring that we don't experience repeated sequences of random numbers. We seed this PRNG using the random state = 1 for a run of the code. 
+
+%When parallellizing the code we set the random state to 1+thread\_number of the thread used. 
+
+\subsection{Lattice initialization}
+
+The initial microstate of the lattice is generated either; a) uniformly by setting all dipoles to $+1$, or b) randomly by sampling a random number $r\sim U(0,1)$ and setting $s_k = \begin{cases} +1 \quad, r\geq.5 \\ -1\quad, r<.5\end{cases}$. 
+
+\noindent The implications of the initialization method is furthere discussed in section \ref{sec:p4_results_and_discussion}.
+
+\subsection{Periodic Boundary conditions and how to decrease over all computational cost}
+
+To enhance the realism of the Ising model, we implement periodic boundary conditions to approximate the simulation of a real-world material. This approach allows dipoles at the edges of the array to interact with dipoles on the opposite edges, effectively creating a continuous, wrap-around system. In a two-dimensional Ising model, this ensures that every dipole has four neighbors, regardless of its position in the array.
+Let's consider a microstate $\mathbf{s}$ represented by an $L \times L$ matrix, where $i$ and $j$ denote the row and column indices for a dipole $s_{i,j}$. With periodic boundary conditions, the neighbors of any dipole can be identified by:
+
+\noindent
+\begin{varwidth}[t]{0.45\textwidth}
+    \begin{itemize}
+        \item Up: $s_{i-1, j}$
+        \item Down: $s_{i+1, j}$
+    \end{itemize}
+\end{varwidth}%
+\hspace{0.05\textwidth} % Adjust space between the columns
+\begin{varwidth}[t]{0.45\textwidth}
+    \begin{itemize}
+        \item Left: $s_{i, j-1}$
+        \item Right: $s_{i, j+1}$
+    \end{itemize}
+\end{varwidth}
+
+\noindent Here, we assume that $i$ increases when moving down the rows and $j$ increases when moving rightwards.
+
+To efficiently implement these periodic conditions, we introduce two shift vectors, $\mathbf{u}$ and $\mathbf{v}$. These vectors help us determine the correct indices for all neighbors, including those that wrap around the edges of the array. Letting $k$ be either the row or column index depending on the context we have:
+\begin{itemize}
+    \item $\mathbf{u}$: This shift vector is used for finding the up and left neighbors. It's calculated using the formula $(k - 1 + L) \% L$, where $\%$ denotes the modulus operation.
+    \item $\mathbf{v}$: This shift vector is used for finding the down and right neighbors. It's calculated using the formula $(k + 1) \% L$.
+\end{itemize}
+
+\noindent These shift vectors, yields the indices of all neighboring dipoles, ensuring that the periodic boundary conditions are correctly applied throughout the simulation. This approach not only simplifies the implementation but also ensures that the model more accurately represents the behavior of a continuous material, reducing edge effects that is only otherwise negligible for very large values of $L$.
+
+
+Another place in the algorithm where computational costs can be avoided is in the computation of the acceptance of dipole flips. Firstly, calculating $\Delta E$ implies calculating the total energy by equation \eqref{eq:p4-tot_energy} $N$ times for every Monte Carlo cycle. However this is not necessary as $\Delta E$ can only take on five different values depending on the sum over the neighboring dipoles, i.e there are only five macrostates for the ''neighborhood``. To illustrate, consider the two of the macrostates,
+
+\begin{itemize}
+    \item For $N\uparrow$=4, $\mathbf{s}_i \implies \begin{matrix} & \uparrow & \\ \uparrow & \uparrow & \uparrow \\ & \uparrow & \end{matrix}$, 
+    $\mathbf{s}_{i+1} \implies \begin{matrix}& \uparrow & \\ \uparrow & \downarrow & \uparrow \\ & \uparrow & \end{matrix}$.
+    \item For $N\uparrow$=1, $\mathbf{s}_i \implies\begin{matrix} & \downarrow & \\ \downarrow & \uparrow & \downarrow \\ & \uparrow & \end{matrix}$, 
+    $\mathbf{s}_{i+1} \implies \begin{matrix} & \downarrow & \\ \downarrow & \downarrow & \downarrow \\ & \uparrow &\end{matrix}$.    
+\end{itemize}
+
+\noindent From these two states we will have $\Delta E = 4 - (-4) = 8 J$ and $\Delta E = (-2) - 2 = -4 J$ respectively. Table \ref{tab:p4_delE} summarize the possible values of $\Delta E$ for all five macrostates. We see that $\Delta E = 2* E(\mathbf{s}_{i+1})$ which allows us to compute $\Delta E$ using 4 FLOPS to sum over the neighboring dipoles and 2 FLOPs for mulitplication of the sum with $s_k'$ (yielding the final energy) and 2 (yielding $\Delta E$).  
+
+\begin{table}[h!]
+\caption{The energy changes that can occur when changing from microstate $\mathbf{s}_i$ to $\mathbf{s}_{i+1}$ from the flip of a single dipole $s_k$. The energy is not the total energy of the lattice, but rather the energy of the five displayed dipoles.}
+\label{tab:p4_delE}
+\begin{tabular}{cccc}
+\toprule
+Macrostate $N\uparrow$  & Initial $E$ [J]   & Final $E$ [J] & $\Delta E$ [J] \\ \midrule
+4                       & -4                & 4             &     8          \\
+3                       & -2                &  2            & 4              \\
+2                       & 0                 & 0             & 0              \\
+1                       & 2                 & -2            & -4             \\
+0                       & 4                 & -4            & -8             \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+To make sure that the sampling converges towards a stationary state we use the detailed balance condition and a random number for cases where $\Delta E > 0$. From the detailed balance condition we get that the ratio of probabilities is 
+
+$$
+\frac{P(E(\mathbf{s}_i))}{P(E(\mathbf{s}_{i+1}'))} 
+= \frac{e^{-\beta E_i}/Z}{e^{-\beta E_{i+1}}/ Z} = e^{-\Delta E/\beta} \quad,
+$$
+
+\noindent which implies that the random number must simply be smaller then the boltzmann factor. Since there are only five distinct values $\Delta E$, there are also only five values of the Boltzmann factors per temperature, which can be pre-calculated. We solve this by using a map with the $\Delta E$ value as key and the Boltzmann factor as value; this look-up is less expensive than calculating the exponential function. 
+
+% \subsection{Experiment design}
+
+\subsection{Tools}
+
+All simulation code is written in cpp using mainly the armadillo library for vector handling. The exception is the analytical values for the $2\times 2$ model which is solved by python implemented functions using numpy. For plotting matplotlib and seaborn is used in jupyter notebooks. 
+
+I have used the copilot codeium (\href{https://codeium.com/}{https://codeium.com/}) to aid with cpp syntax and python plotting. However, I have not used it to develop any parts of the code unsupervised, all code structure is therefor created by me.
+
+\end{document}
