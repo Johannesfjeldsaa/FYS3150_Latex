@@ -1,0 +1,13 @@
+\documentclass[../main_proj4_correct_template.tex]{subfiles}
+
+\graphicspath{{\subfix{Figures/}}}
+
+\begin{document}
+\section{Introduction}\label{Introduction}
+
+
+The Ising model is a simplified model of one of the magnetic domains within a ferromagnet (a material where neighboring dipoles tend to align parallel to each other) \cite{thermal_physics}. Compared to a ferromagnet in nature, the key simplifications include assuming a preferred magnetization axis for which each of the atomic dipoles aligns (anti)parallel. The result is that we only allow dipoles to be pointing up or down. Further, the Ising model assumes that dipoles only interact with their closest neighbors, thus ignoring long-range interactions. Despite the model being strongly reductionist, the number of dipole configurations, or \textit{microstates}, the model can produce grows with its size $N$ by $2^{N}$. This implies that even for smaller models, investigating all states systematically is unattainable. In this study, we investigate how the Metropolis algorithm, a special case of the Markov chain Monte Carlo algorithm, can be used to sample from large density functions like the one of the Ising model. As a sanity check, we also evaluate the sampling-methods validity against the analytical results, first derived by the Norwegian chemist Lars Onsanger in his 1944 paper on crystal statistics \cite{onsanger_crystal_stat}.
+
+The study is structured as follows: In Section \ref{sec:p4theory} we describe the Ising model and how key physical properties can be calculated from it using Boltzman statistics. Next Section \ref{sec:p4_method} describes the Metropolis algorithm and the analytical benchmark derived for a $2\times 2$ Ising model. Comments on code-specific implementations are given in Section \ref{sec:p4_implementation}. In section \ref{sec:p4_results_and_discussion}, the results from model simulations are shown and discussed. Lastly, we conclude on the Metropolis algorithms effectiveness for sampling in Section \ref{sec:conclusion}. Appendix \ref{app:p4AppendixA} shows further details on derivations of the analytical benchmarks for the numerical solution. All code developed for this report is available via the UiO GitHub repository \href{https://github.uio.no/johannlf/FYS3150}{https://github.uio.no/johannlf/FYS3150}, and \LaTeX typesetting is found at \href{https://github.com/Johannesfjeldsaa/FYS3150_Latex}{https://github.com/Johannesfjeldsaa/FYS3150\_Latex}.
+
+\end{document}
