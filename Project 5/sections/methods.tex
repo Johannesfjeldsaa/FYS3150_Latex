@@ -1,323 +1,232 @@
-\documentclass[../main_proj4_correct_template.tex]{subfiles}
+\documentclass[../main_proj5.tex]{subfiles}
 
 \graphicspath{{\subfix{Figures/}}}
 
 \begin{document}
 
-\section{Theory}\label{sec:p4theory}
+\section{Theory}\label{sec:p5_theory}
 
-\subsection{The ising model}
 
-The Ising model consists of $N$ atomic dipoles for which the state of each individual dipole, denoted by $s_k$, takes on the values $\in \{-1, +1\}$ (for illustration purposes, we introduce the notation $\downarrow := -1$ and $\uparrow := +1$). Further we let the vector $\mathbf{s} = \{s_1, s_2, \dots, s_N\}$ denote the dipole configuration or microstate and let $\mathcal{S}$ be a finite set containing all allowed microstates. The total energy of the system is given by equation \eqref{eq:p4-tot_energy} and is proportional to the coupling constant $J$ which is the energy associated with the interaction between neighboring dipoles $k$ and $l$. 
+\subsection{The Schr\"{o}dinger equation and Borns rule}
 
-\begin{equation}
-\label{eq:p4-tot_energy}
-    E(\mathbf{s}) = -J \sum\limits_{\langle kl \rangle}^N s_k, s_l 
-\end{equation}
-
-\noindent Here $\langle kl \rangle$ denotes a summation over all neighboring pairs of dipoles without double counting. Since the dipoles are unitless, we set the unit of energy to be the coupling constant $[E] = J$. This representation of the energy implies that aligned dipole pairs contribute $-1J$ to the sum while opposite pairs contribute with $+1J$. As previously introduced, if aligned dipoles dominate, the material is considered a ferromagnet. Further, the dominating direction will reflect the dominant magnetic moment, and so the sum of individual dipoles represents the total magnetization
+Including time-dependencies the general formulation of the Schr\"odinger equation is 
 
 \begin{equation}
-\label{eq:p4_magnetization}
-    M(\mathbf{s}) = \sum\limits_{\langle k \rangle}^N  s_k \quad. 
+\label{eq:p5_general_schrodinger}
+    \text{i} \hbar \frac{d}{dt} \ket{\Psi} = \hat{H} \ket{\Psi} \quad ,
 \end{equation}
 
-\noindent Since dipoles are unitless, the magnetization is so, that is, $[M] = 1$. To enable comparison between models of different sizes, we introduce energy per dipole $\epsilon(\mathbf{s}) = E(\mathbf{s})/N$ and magnetization per dipole $m(\mathbf{s}) = M(\mathbf{s})/N$. These will have units $J/s$ and $1/s$, respectively. 
+\noindent where; $\text{i} = \sqrt{-1}$ is the imaginary unit, $\hbar$ is the reduced Planck constant defined by $\hbar:= h/2\pi$, $\hat{H}$ is the Hamiltonian operator and $\ket{\Psi}$ is the quantum state \cite{prosjekttbeskrivelse5}. 
 
-The Ising model is a highly simplified model of a ferromagnet and is not an accurate representation, most notably for lower temperatures. However, closer to the Curie temperature, that is, the critical temperature for which the net magnetization of the ferromagnet becomes zero, it is a more accurate representation \cite{thermal_physics}. This is also the temperature domain of main focus in this study.
-
-\subsection{Statistical analysis of the Ising model}
-
-In this study, we want to investigate the properties of the Ising model close to or at the critical temperature. Since the model is valid for any $N$, it has many degrees of freedom, making direct analysis unattainable. The model is therefore analyzed using Boltzmann statistics, where the observation probability of a state $\mathbf{s}_j$ (at temperature $T$) is governed by the Boltzmann distribution
+$\ket{\Psi}$ represents the quantum state in general and without considering the specific basis for the physical space. For a non-relativistic particle in \textit{position space} with a position given by $\mathbf{r}$ the quantum state is represented by the complex-valued wave function $\Psi(\mathbf{r})= \bra{\mathbf{r}\ket{\Psi}}$ \cite{prosjekttbeskrivelse5}. Further, working in position-space yield the Hamiltonian as 
 
 \begin{equation}
-\label{eq:p4_Boltzmann_distribution}
-    P(\mathbf{s_j}; T) = \frac{1}{Z} e ^{-\beta E(\mathbf{s_j})} \quad.
+\label{eq:p5_hamiltonian}
+    \hat{H} = - \frac{\hbar^{2}}{2m} \frac{\partial^{2}}{\partial\mathbf{r}^{2}} +V(\mathbf{r}) \quad,
 \end{equation}
 
-\noindent Here $Z$ is the partition function and $\beta=1 / k_B T$ with $k_B$ being the Boltzmann constant. By utilizing $k_B$ \say{as is} the unit for temperature becomes $[T] = J/k_B$ following from $\frac{[E(\mathbf{s})]}{k_B[T]} = 1$. In equation \eqref{eq:p4_Boltzmann_distribution} the ratio $1 / Z$ serves as the normalization factor of the probability distribution, and so to derive the expression for the partition function we know that we must fulfill (since we have discrete spin configurations) $\sum_{\mathbf{s}_{j}} P(\mathbf{s}_j;T) = 1$. Substituting equation \eqref{eq:p4_Boltzmann_distribution} into this condition and solving for $Z$ yields the general expression for the partition function
+\noindent where $m$ is the particle mass and $V(\mathbf{r})$ represents a time-\textit{independent} external environment for the particle. 
+
+In quantum mechanics each observable (e.g. position, momentum, energy etc) is associated with a linear Hermitian operator (see chapter 5 in \cite{townsend2010quantum} for details on implications). When the operators of different observables do not commute, that is, its commutator do not vanish an uncertainty relation is formed \cite{townsend2010quantum}. This is the case for the position operator $\mathbf{r}_{\operatorname{op}}$ and the momentum operator $p_{\mathbf{r}_{\operatorname{op}}}$ which yields the Heisenberg uncertainty relation 
 
 \begin{equation}
-    \label{eq:p4_partition_function}
-    Z = \sum\limits_{\mathbf{s_j}} e^{-\beta E(\mathbf{s_j})} \quad .
+\label{eq:p5_heisenberg_uncertainty}
+    \Delta \mathbf{r} \Delta p_\mathbf{r} \geq \frac{\hbar}{2} .
 \end{equation}
 
-\noindent This will be a constant for a given $T$.
+\noindent Here $\Delta$ indicates that there is some uncertainty attached to the measurement. The consequences is that we can not conduct a precise measurement of both the position and movement of the particle at the same time. This illustrates the need for Born's rule which postulates that a measurement of a quantum system yields the \textit{probability} of the given result, rather then some exact metric. For this study we use Born's rule to interpret the normalized squared value of the wave function as the probability density for where the particle is positioned in space. At a time $t$ the mathematical formulation becomes
+\begin{equation}
+\label{eq:p5_borns_rule_positionspace}
+    p(\mathbf{r}; t) = |\Psi(\mathbf{r}, t)|^{2} = \Psi(\mathbf{r}, t)^* \Psi(\mathbf{r}, t) , 
+\end{equation}
 
-Boltzmann statics allows us to use the first- and second-order moments of energy and magnetization to investigate the model's thermodynamic properties. The first-order moments, also known as the expectation values, are given by 
+\noindent where $^*$ signifies taking the complex conjugate- To allow for this probabilistic interpretation of the wave function Born's rule also implies that probability must be conserved in the system. Further a normalization of the probability is also needed to interpret how different wave functions interact with the system \cite{townsend2010quantum}. Therefor we require 
 
 \begin{equation}
-\label{eq:p4_expectation_energy}
-    \mathbb{E}[\epsilon] 
-    = \frac{1}{N} \sum\limits_\mathbf{s_j} E(\mathbf{s}_j) P(\mathbf{s}_j)
-    \quad ,
-\end{equation}
-and 
-\begin{equation}
-    \mathbb{E}[|m|] 
-    = \frac{1}{N} \sum\limits_\mathbf{s_j} |M(\mathbf{s}_j) |P(\mathbf{s}_j)
-    \quad ,
+\label{eq:p5_normalization_condition}
+    \int\limits_{-\infty}^{\infty} p(\mathbf{r;} t)d\mathbf{r} = 1 .
 \end{equation}
 
-\noindent for the energy per dipole and magnetization per dipole respectively. Here we use only the magnitude of the magnetization ($|M|$ as opposed to $M$) because our focus is on the \textit{magnitude} of magnetization as opposed to \textit{what} magnetization we will find \cite{prosjekttbeskrivelse4}. 
 
-The heat capacity per dipole $C_V(T)/N$ (the heat needed to change the temperature of the material per dipole) is related to the first- ($\mathbb{E}[\epsilon]$) and second-order ($\mathbb{E}[\epsilon^{2}]$) moment of the energy via the variance. That is, we can express it by 
-
-\begin{equation}
-\label{eq:p4_heat_capacity}
-    \frac{C_V(T)}{N} = \frac{N}{k_BT^{2}} \operatorname{Var}(\epsilon)
-    \quad .
-\end{equation}
-
-\noindent The heat capacity per dipole has the unit $k_B/s$. Similarly the first- ($\mathbb{E}[|m|]$) and second-order ($\mathbb{E}[m^{2}]$) moment of the magnetization is related to the susceptibility of the material $\chi(T)$ by 
-
-\begin{equation}
-\label{eq:p4_susceptibility}
-    \frac{\chi(T)}{N} = \frac{N}{k_BT} \operatorname{Var}(m) 
-    \quad .
-\end{equation}
-
-\noindent The susceptibility per dipole has the unit $(Js)^{-1}$. Note that it is no longer required to take the absolute value of $m$ for the second-order moment as the squaring removes the possibility of a negative sign. The susceptibility of a material describes to what degree applying a magnetic field will magnetize the ferromagnet. Below the Curie temperature, the susceptibility of a ferromagnet is high, i.e., allowing maintained magnetization even without an applied field. However, since $\chi \propto T^{-1}$, the susceptibility will decrease as the temperature approaches the Curie temperature.
+%The Hamiltonian is a linear Hermitian operator of energy where $- \frac{\hbar^{2}}{2m} \frac{\partial^{2}}{\partial\mathbf{r}^{2}}$ expresses the particles kinetic energy. This implies that we can formulate the equation as an eigenvalue equation for which the only possible results of measurements of energy are at the eigenvalues, i.e., we have discretized energy values \cite{townsend2010quantum}. 
 
 
-\subsection{Phase transitions\footnote{Heavally based on descriptions from \cite{prosjekttbeskrivelse4}.}}
 
-A phase transition refers to a change in the structure or state of a material, such as from solid to liquid or between different crystal structures. These changes will find place at some critical value of macroscopical properties, such as the Curie temperature for magnetization.
-
-Close to this critical value, we describe this behavior by powerlaws, where the exponentials are called critical exponents. It can be shown that close to $T_c$, the magnetization, heat capacity, and susceptibility will be proportional to the temperature deviation raised to the critical exponent:
-
-\begin{equation}
-    \mathbb{E}[|m|] \propto | T-T_c(L=\infty)|^{\beta}, 
-\end{equation}
-\begin{equation}
-\label{eq:p4cv1}
-    \frac{C_V}{N}\propto | T-T_c(L=\infty)|^{-\alpha} \quad , \text{ and}
-\end{equation}
-\begin{equation}
-\label{eq:p4chi1}
-    \frac{\chi}{N}\propto | T-T_c(L=\infty)|^{-\gamma} \quad.
-\end{equation}
-
-For the two-dimensional Ising model, the critical exponents are $\beta=1/8$, $\alpha=0$, and $\gamma = 7/4$. Through the phase transition, the change in state is quantified using the correlation length.
-
-\begin{equation}
-    \label{eq:p4_correlation_len}
-    \zeta = |T - T_c(L=\infty)|^{-\nu} \quad, 
-\end{equation}
-
-where $\nu=1$. Since we are using an Ising model with a finite size $L$, the largest possible correlation length is $\zeta=L$. Using this, we get that for $T$ close to $T_c(L)$, the magnetization, heat capacity, and susceptibility become proportional to
-
-\begin{equation}
-    \mathbb{E}[|m|] \propto L^{-\beta/\nu}\quad , 
-\end{equation}
-\begin{equation}
-\label{eq:p4cv2}
-    \frac{C_V}{N}\propto L^{\alpha/\nu} \quad, 
-\end{equation}
-\begin{equation}
-\label{eq:p4chi2}
-    \frac{\chi}{N}\propto L^{\gamma/\nu} \quad.
-\end{equation}
-
-Further, using the relations close to $T_c$ it is possible to show that
-
-\begin{equation}
- T_c(L=\infty) = T_c(L) - aL^{-1} \quad,
-\end{equation}
-
-meaning that estimation of the critical temperature for an infinitely large Ising model can be done by finding the linear fit between the $T_c(L)$ and the inverse of $L$.
 
 % ===========================================================================
 % Method
 % ===========================================================================
 
-\section{Method}\label{sec:p4_method}
+\subsection{The scaled Schr\"odinger equation}
 
-\subsection{The Metropolis algorithm}
+In this study, we examine a non-relativistic particle in a two-dimensional position-space. Substituting equation \eqref{eq:p5_hamiltonian} into equation \eqref{eq:p5_general_schrodinger} with $\mathbf{r}= [x, y]$ we get 
 
-For a smaller two-dimensional lattice, e.g., one consisting of $2\times 2$ dipoles, there are $2^{4}=16$ possible microstates. For a still very small lattice of $10\times 10$ dipoles, the number of microstates becomes on the order of $10^{30}$, and so calculation of expectation values explicitly (e.g., by equation \eqref{eq:p4_expectation_energy}) becomes impossible. Further randomly sampling from the microstates, e.g., taking one billion states, will only allow us to cover $\sim 8\cdot10^{-20} \%$ of the microstates, and so this is not an appropriate approach either.
-
-To sample from distributions like the Boltzmann distribution of equation \eqref{eq:p4_Boltzmann_distribution} a common solution is using the Markov chain Monte Carlo (MCMC) method \cite{lecture_notes}. The general sampling procedure consists of :
-\begin{itemize}
-    \item Generate a new candidate state $\mathbf{s}_{i+1}'$ from a proposal probability function that is only dependent upon the current state $\mathbf{s}_i$.
-    \item Use an acceptance rule to decide which value $\mathbf{s}_{i+1}$ takes:
-    \begin{itemize}
-        \item if accepted $\mathbf{s}_{i+1} = \mathbf{s}_{i+1}'$
-        \item if rejected $\mathbf{s}_{i+1} = \mathbf{s}_i$
-    \end{itemize}
-    \item reiterate.
-\end{itemize}
-
-\noindent The result is an algorithm where the next state is only dependent on the previous one (fulfilling the Markov property \cite{Linear_Algebra_and_its_Applications}). In this study we use the Metropolis algorithm, a special case of MCMC where the low-energy microstates will occur more frequently, thus biasing the sampling towards states that are more probable, given the second law of thermodynamics \cite{thermal_physics}. The full procedure of running the Metropolis algorithm for $n_{\operatorname{cycles}}$ Monte Carlo cycles (one cycle being a pass through $N$ samples) will be:
-
-\begin{itemize}
-    \item Initialize the system in a random state. For the Ising model this implies generating a random microstate of the lattice.
-    \item For each Monte Carlo cycle $n$ while $n < n_{\operatorname{cycles}}$ we:
-    \begin{itemize}
-        \item Iterate through $N$ samples for which we propose a new candidate microstate $\mathbf{s}_{i+1}'$ by choosing a random dipole $s_k$ and calculating the change in total energy $\Delta E = E_{\operatorname{after}} - E_{\operatorname{before}}$ resulting from the flip of the dipole. 
-
-        \begin{itemize}
-            \item If $\Delta E \leq 0$ the new microstate is thermodynamically favorable and so we flip $s_k$. 
-            \item If $\Delta > 0$ we only flip $s_k$ if the ratio between probabilities $\frac{P\big(E(\mathbf{s}_i) \big)}{P\big(E(\mathbf{s}_{i+1}') \big)}$ is greater than or equal to a random number $r\sim U(0,1)$.
-        \end{itemize}
-        
-        \item Reiterate until the sampling count reaches $N$.
-    \end{itemize}    
-    \item At the end of each cycle we use the resulting state $\mathbf{s}$ and store the energy and magnetization of the system. In addition we can also track the estimates of the expectation values and use them to calculate other derived properties.
-\end{itemize}
-
-\noindent Here we recognize the overall structure from MCMC while the acceptance procedure is what makes this the Metropolis algorithm \cite{lecture_notes}. 
-
-
-\subsection{Analytical benchmarking}\label{sec:p4_method_benchmark}
-
-In his 1944 paper Lars Onsanger derived the expression for the Curie temperature of the two-dimensional Ising model for all values of $L\in[2, \infty)$ to be \cite{onsanger_crystal_stat} 
-\begin{equation}
-    \label{eq:p4_critical_temp}
-    T_c = \frac{2}{\ln[1 + \sqrt{2}]} \frac{J}{k_B} \approx 2.269 \frac{J}{k_B} \quad.
-\end{equation}
-
-\noindent This is the temperature for which we expect the magnetization to move towards net zero. To investigate the properties that indicates this material state, we will mainly focus on the numerical solution using MCMC. However, as a benchmark, we also derive the analytical expressions for the $2\times 2$ lattice version of the model. For a $N=4$ lattice, the spin configuration is denoted by the matrix $\mathbf{s} = \begin{bmatrix} s_{1,1} & s_{1,2} \\ s_{2,1} & s_{2,2}\end{bmatrix}$. Letting the number of spins in the $\uparrow$ state be denoted by $N\uparrow$, we have five macrostates, that is, $N\uparrow \in [0, 4]$. A given configuration of $\mathbf{s}$ that realizes the macrostates is termed a microstate. The total number of microstates is given by raising two to the power of $N$. The number of microstates is therefore $N = 2^{4}=16$ microstates. All the possible $\mathbf{s}$'s make up $\mathcal{S}$ for this lattice. Further, the degeneracy of macrostates, which we refer to as multiplicity, is given by
 
 \begin{equation}
-    \label{eq:p4_multiplicty}
-    \Omega(N\uparrow) = \begin{pmatrix} N \\ N\uparrow \end{pmatrix} = \frac{N!}{N \uparrow ! N \downarrow !} \quad,
+\label{eq:p5_full_schrodinger_p5}
+    \text{i}\hbar \frac{\partial}{\partial t} \Psi = \\
+    -\frac{\hbar}{2m}\left(\frac{\partial^{2}}{\partial x^{2}} + \frac{\partial^{2}}{\partial y^{2}}\right)\Psi + V(x,y)\Psi,
 \end{equation}
 
-\noindent where $N \downarrow$ is the number of spins in a down state given by $N\downarrow = N - N \uparrow$ \cite{thermal_physics}. Table \ref{tab:p4_2x2lattice} shows the total energy and magnetization of each macrostate (see Appendix \ref{app:p4_AppendixA_microstates} for detail on microstate structures and energy). In addition the table shows the degeneracy within the macrostate.
+\noindent where we have omitted the ''function-off`` notation for $\Psi(x,y,t)$. Assuming that dimensionful variables have been scaled away, \eqref{eq:p5_full_schrodinger_p5} can be simplified to 
+
+\begin{equation}
+\label{eq:p5_scaled_schrodinger_p5}
+    \text{i}\frac{\partial u}{\partial t} =
+    -\frac{\partial^{2}u}{\partial x^{2}} - \frac{\partial^{2} u}{\partial y^{2}} + v(x,y ) u,
+\end{equation}
+
+\noindent where all variables are dimensionless with $u(x,y,t)$ as some complex-valued scaled wave function \cite{prosjekttbeskrivelse5}. Using the notation from equation \eqref{eq:p5_scaled_schrodinger_p5} Born's rule become
+\begin{equation}
+    \label{eq:p5_scaled_borns_rule_positionspace}
+    p(x,y;t) = |u(x,y,t)|^{2}.
+\end{equation}
+
+\noindent To solve this system with a propagating particle we will use the numerical Crank-Nicolson method in this study.
 
 
-\begin{table}[h!]
+\subsection{Crank-Nicolson discretization}
+
+In this study we will use a square potential with $x,y \in[0, 1]$. We will simulate over times $t\in[0, T]$ where $T$ will be varied between experiments (see Section \ref{sec:p5_implementation_experment design} for details). Further, we let $i$, $j$ and $n$ denote the index in the discretized $x, y$ and $t$ with $i,j = 0, 1, \dots, M-1$ and $n = 0, 1, N_t-1$ respectively. Consequently, the spatial resolution of the discretization is $h=\frac{1-0}{M-1}$ including the boundary points and the temporal resolution is $\Delta t = \frac{T-0}{N_t}$. For an arbitrary point in the spatio-temporal space the scaled wave function is denoted by 
+\begin{equation}
+\label{eq:p5_discretized_scaled_wavefunction}
+u(x_i, y_j, t_n)=u(ih, jh, \Delta t):=u_{ij}^n ,    
+\end{equation}
+
+\noindent for which we introduce the matrix $U^{n}\in\mathbb{C}^{M\times M}$ to hold all values $u_{i,j}^{n}$. To constrain the problem we use Dirichlet boundary conditions implying $u_{ij}^{n} = 0$ for all $i,j =0 || M-1$. Similarly, the potential is denoted as 
+
+\begin{equation}
+    v(x_i, y_j) = v(ih,jh) = v_{ij} ,
+\end{equation}
+
+\noindent which we store in the matrix $V\in\mathbb{R}^{M\times M}$. 
+
+The general form of the original Crank-Nicolson scheme for an equation of the form $\frac{\partial u}{\partial t} = F(x, y, t)$ is 
+
+\begin{equation}
+    \label{eq:p5_general_Crank_Nicolson}
+    \left(\frac{\partial u}{\partial t} \right)_{ij}^n = 
+    \frac{1}{2}\left[F_{ij}^{n+1} + F_{ij}^{n}\right] \quad, 
+\end{equation}
+
+\noindent where we have introduced the same short-hand notation for the derivatives and $F$ as that of $u(x,y,t) \to u_{ij}^n$ \cite{lecture_notes}. For equation \eqref{eq:p5_scaled_schrodinger_p5} the Crank-Nicolson formulation implies that 
+
+\begin{equation}
+    F(x,y,t) = -\frac{\partial^{2}u}{\partial x^{2}} - \frac{\partial^{2} u}{\partial y^{2}} + v(x,y ) u \quad.
+\end{equation}
+
+To discretize we use forward difference for the first-order partial derivatives and the general form for the second-order partial derivatives. Further, by using the approximate terms (i.e. omitting the terms; $\mathcal{O}(\Delta t)$ and $\mathcal{O}(h^{2})$) we show in Appendix \ref{app:p5_AppendixA_discretized schrodinger} that the scaled Schr\"odinger equation can be written as 
+
+\begin{equation}
+\label{eq:p5_discretized_schrodinger_crank_nicolson}
+\begin{split}
+    u_{ij}^{n+1} &  \\
+    - r \left[u_{i+1,j}^{n+1} - 2u_{ij}^{n+1} + u_{i-1,j}^{n+1}\right] & \\
+    - r \left[u_{i,j+1}^{n+1} - 2u_{ij}^{n+1} + u_{i,j-1}^{n+1}\right]&  \\
+    + \frac{i \Delta t}{2} v_{ij} u_{ij}^{n+1} &=   u_{ij}^n \\
+    & +r \left[u_{i+1,j}^n - 2u_{ij}^n + u_{i-1,j}^n\right]  \\
+    & +  r \left[u_{i,j+1}^n - 2u_{ij}^n + u_{i,j-1}^n\right]  \\
+    &  -  \frac{i \Delta t}{2} v_{ij} u_{ij}^n 
+\end{split}, 
+\end{equation}
+
+\noindent where $r$ is a constant defined as $r := \frac{\text{i} \Delta t}{2 h^{2}}$. From this discretization we see that propagation forward in time implies a computational stencil using all four nearest neighbors in the discretized position space. 
+ 
+In Appendix \ref{app:p5_AppendixA_matrix_vector} we show that we can re-write equation \eqref{eq:p5_discretized_schrodinger_crank_nicolson} as a matrix-vector equation on the form 
+
+\begin{equation}
+\label{eq:p5_general_matrix-vector-equation}    
+    A \mathbf{u}^{n+1} = B \mathbf{u}^{n}.
+\end{equation}
+
+\noindent In this formulation the constants used to scale the significance of neighboring wave function values are store in $A$ which is a five-diagonal banded matrix in $\mathbb{C}^{N_{int}^{2}\times N_{int}^{2}}$. Similarly the right hand side constants are stored in $B$. Further, $\mathbf{u}^{n(+1)}$ are column vectors in $\mathbb{C}^{N_{int}^{2}}$ holding the vertically stacked internal points from the columns of the state matrix $U^{n(+1)}$. 
+
+% ===========================================================================
+% Implementation
+% ===========================================================================
+
+\subsection{initialization}
+
+Since we are simulating a physical system we have to place the particle in some form of surroundings, here represented by the matrix $V$. Figure \ref{fig:two-slit_setup} show the two-slit setup which is used for most simulations. Black areas are walls where $v_{ij}$ is set to 10 \% of the maximum available in c++ doubles. White areas are set to 0.
+
+\begin{figure}[h!]
     \centering
-    \caption{The energy and magnetization associated with each macrostate. The degeneracy column shows the multiplicity, degeneracy of the energy level and degeneracy of magnetization within the macrostate.}
-    \begin{tabular}{cccc}
-    \toprule
-    Macrostate $N\uparrow$ & Energy $E~(J)$  & Magn. $M~(1)$ & Degeneracy\\ \midrule
-    0  & $-8$ & -4 & 1, 1, 1 \\
-    1  & $0$  & -2 & 4, 4, 4\\
-    2  & $0/0/8$ & 0 & 6, 2/2/2, 6\\
-    3  & $0$  & 2  & 4, 4, 4 \\
-    4  & $-8J$ & 4  & 1, 1, 1\\ \bottomrule
-    \end{tabular}
-    
-    \label{tab:p4_2x2lattice}
-\end{table}
+    \includegraphics[width=0.9\linewidth]{Project 5/figures/2slits.png}
+    \caption{The two slit external environment which the particle is placed in. Black areas are walls where $v_{ij}$ is set to 10 \% of the maximum available in c++ doubles. White areas are set to 0. }
+    \label{fig:two-slit_setup}
+\end{figure}
 
-Using table \ref{tab:p4_2x2lattice} we can derive analytical expressions for the partition function as well as the statistical modes. The derivations are shown in \ref{app:p4_AppendixA_analyticalexpressions}. The partition function of equation \eqref{eq:p4_partition_function} have the specific analytical solution 
+\noindent The initialization of $V$ will vary between the number of slits used in the simulation, however the center wall will always centered at $x=0.5$. Further, the slits will always be symmetric around $y=0.5$ with a slit aperture of $0.05$ and a separation segment of $0.05$.  
+
+To simulate the propagation of a wave packet using equation \eqref{eq:p5_general_matrix-vector-equation} we need some initial values which we represent by $U^{0}$. In this study we initialize the wave packet using the Gaussian distibution 
 
 \begin{equation}
-\label{eq:p4_partition_function_2x2analytical}
-    Z = 12 + 4\cosh(8J\beta) \quad.
-\quad.
+\label{eq:p5_gaussian_wave}
+    u(x,y, t=0) = e^{\left[ 
+    - \frac{(x-x_c)^{2}}{2\sigma_x^{2}} - \frac{(y-y_c)^{2}}{2\sigma_y^{2}} +\text{i}(p_x x + p_y y)
+    \right]},
 \end{equation}
 
-\noindent The first- and second-order moments for $\epsilon$ and $m$ are 
+\noindent where $x_c, y_c$ are the mean of marginal distributions, therefor dictating the coordinate of the center of the initial wave function. $\sigma_x, \sigma_y$ is the standard deviation, signifying the initial width of the distributions and $p_x, p_y$ is the wave-packet momenta \cite{prosjekttbeskrivelse5}. To fulfill the boundary conditions we set $u_{ij}^{0} = 0$ for all $i, j$ where $\operatorname{abs}(v_{ij}) > 10^{-10}$, that is, when we are in a wall. 
+
+To apply Born's rule we normalize $U^{0}$ by 
 \begin{equation}
-\label{eq:p4_<eps>}
-    \mathbb{E}[\epsilon] = - \frac{1}{N}\frac{32Jsinh(8J\beta)}{Z} \quad,
+    U_{\operatorname{normalized}}^{0} = \frac{U^{0}}{N^{0}},
 \end{equation}
+
+\noindent where $N^{0}$ is the normalization factor estimated by
 \begin{equation}
-\label{eq:p4_<eps2>}
-    \mathbb{E}[\epsilon^{2}] = \frac{1}{N^{2}}\frac{256 J^{2} cosh(8J\beta)}{Z} \quad,
+    N^{0} = \left(
+    \sum\limits_{i,j} |u_{i,j}^{0}|^{2}
+    \right)^{\frac{1}{2}} .
 \end{equation}
+
+\noindent $U_{\operatorname{normalized}}^{0}$ will now satisfy equation \eqref{eq:p5_normalization_condition} allowing us to interpret $p_{ij}^{0}$ as the probability at $t=0$ of a particle being in the area $h^{2}$ centered on $(ih, jh)$. Given numerical stability this will be true for all $n = 0, 1, ..., N_t$. Further, the normalized marginal distributions for one of the spatial dimensions, that is, $p(y| x=ih ; t=n)$ or $p(x|y=jh; t=n)$ is interpretable as a detection screen commonly used in interference experiments.
+
+After initializing $V$ and $U$ we initialize the coefficient matrices $A$ and $B$. These are filled with the constants from equation \eqref{eq:p5_discretized_schrodinger_crank_nicolson} on five diagonals. Because of this, and their large size, they are stored as sparse matrices during simulation.
+
+During the initialization we set multiple parameters; number of slits for $V$, position, width and momenta for $U$ and the discretization resolution which affects all. In Section \ref{sec:experimental_design} we present  details on which configurations are used for which experiments. 
+
+\subsection{Solving the equation}
+
+
+
+To solve equation \eqref{eq:p5_general_matrix-vector-equation} involves a two step approach; first we  calculate 
 \begin{equation}
-\label{eq:p4_<|m|>}
-    \mathbb{E}[|m|]= \frac{8}{N} \frac{2+e^{\beta 8 J}}{Z} \quad,
+    \mathbf{b} = B \mathbf{u}^{n} ,
 \end{equation}
+
+
+\noindent that is, we take the matrix-vector product with the known $\mathbf{u}^n$ yielding $\mathbf{b}\in \mathbb{C}^{N_{int}^{2}}$. Next we solve 
+
 \begin{equation}
-\label{eq:p4_<m2>}
-    \mathbb{E}[m^{2}] = \frac{32}{N^{2}} \frac{1+ e^{\beta 8J}}{Z} \quad.
+    A \mathbf{u}^{n+1} =\mathbf{b} ,
 \end{equation}
 
-\noindent Next these moments can be used   to construct the variance term of a variable by $\operatorname{Var(x)} = \Big[\mathbb{E}[x^{2}] - (\mathbb{E}[x])^{2}\Big]$. By substituting the appropriate expectation values: \eqref{eq:p4_<eps>} and \eqref{eq:p4_<eps2>} into the heat capacity equation \eqref{eq:p4_heat_capacity}, and  \eqref{eq:p4_<|m|>} and \eqref{eq:p4_<m2>} into the susceptibility equation \eqref{eq:p4_susceptibility} we can get the full analytical expressions which are shown in Appendix \ref{app:p4a_Cv} and \ref{app:p4a_chi}.
+\noindent for $\mathbf{u}^{n+1}$ which implies performing and inverse of $A$. Since the coefficient matrices are very large inversion is not feasiable with computation of the determinate \cite{Linear_Algebra_and_its_Applications}. Rather we have to consider other direct methods such as Gaussian elimination and LU decompositions or indirect methods such as Jacobi's iterative method and Gauss-Seidel. The indirect methods are often preferred for large matrices since they are often less prone to round-off errors \cite{lecture_notes}. Further they only use non-zero elements for computation and can therefore work without keeping the whole matrix in memory. However these method's are not guarantied to converge to an exact solution. However, in this study we use the superLU implementation (LU decomposition for sparse matrices) from the armadillo c++ library (see \cite{liOverviewSuperLUAlgorithms2005} for details). This allows us to use the direct method also for large matrices. The advantage of the direct methods is that they \textit{can} converge to the exact solution as opposed to indirect methods. 
+
+SuperLU build on the LU-decomposition where a square matrix $A$ is decomposed on the form 
+
+\begin{equation}
+    \label{eq:LU}
+    A = LU, 
+\end{equation}
+
+\noindent which, for larger matrices, allows for a calculation of the inverse which is smaller then that of inverting $A$ directly. We expect a high order of numerical stability using this method.
 
 
-\section{Implementation}\label{sec:p4_implementation}
 
-\subsection{Random numbers}
+\subsection{Experiment design} \label{sec:experimental_design}
 
-To run the Metropolis algorithm we use random numbers both to initialize the Ising model lattice and to evaluate the acceptance of dipole flips when $\Delta E > 0$. For this study we use the pseudorandom number generator (PRNG) ''Mersenne Twister``. This PRNG is implemented in the ''random`` library in CPP and has a period of more then $10^{6001}$ \cite{lecture_notes}. This period is much larger then the number of samples used in this study, thus ensuring that we don't experience repeated sequences of random numbers. We seed this PRNG using the random state = 1 for a run of the code. 
+To assess the numerical stability of the implementation we will assess if the requirement of \eqref{eq:p5_normalization_condition} is fulfilled through the whole simulation. We will run two simulations for this assessment with the spatial dimensions discretized with $h=0.005$ and a temporal discretization of $\Delta t = 2.5 * 10^{-5}$ over the simulation length $T=0.008$. The wave-packet ''settings`` for one simulation will be initialized with  $\mathbf{r}_c = (0.25, 0.50)$, $\mathbf{\sigma}=(0.05, \sigma_y)$, $\mathbf{p}=(200, 0)$. The two simulations are distinct in that the first will be performed with 0 slits, that is, only border-walls, and the second one will have a double slit wall. Further, we use a narrower wave packet in the first simulation with $\sigma_{y}=0.05$ as opposed to $\sigma_y=0.10$ in the second simulation. We will refer to these simulations as the numerical stability experiment.
 
-%When parallellizing the code we set the random state to 1+thread\_number of the thread used. 
+Next we want to assess the behavior of the wave packet as it is propagated towards a double slit. To do this, we use the same values for $h$, $\Delta t$, $\mathbf{r}_c$, $\sigma_x$ and $\mathbf{p}$ as in the assessment of the numerical stability. We will however, reduce the simulation time to $T = 0.002$ and increase the with by setting $\sigma_y=0.20$. By varying the number of slits through the set $\{1, 2, 3\}$ we will also asses the probability of detecting a particle with a detector screen at $x=0.8$. This implies finding the marginal distribution $p(y|x=0.8 ;t=0.002)$. We will refer to these simulations as the slit experiment. 
 
-\subsection{Lattice initialization}
-
-The initial microstate of the lattice is generated either; a) uniformly by setting all dipoles to $+1$, or b) randomly by sampling a random number $r\sim U(0,1)$ and setting $s_k = \begin{cases} +1 \quad, r\geq.5 \\ -1\quad, r<.5\end{cases}$. 
-
-\noindent The implications of the initialization method is furthere discussed in section \ref{sec:p4_results_and_discussion}.
-
-\subsection{Periodic Boundary conditions and how to decrease over all computational cost}
-
-To enhance the realism of the Ising model, we implement periodic boundary conditions to approximate the simulation of a real-world material. This approach allows dipoles at the edges of the array to interact with dipoles on the opposite edges, effectively creating a continuous, wrap-around system. In a two-dimensional Ising model, this ensures that every dipole has four neighbors, regardless of its position in the array.
-Let's consider a microstate $\mathbf{s}$ represented by an $L \times L$ matrix, where $i$ and $j$ denote the row and column indices for a dipole $s_{i,j}$. With periodic boundary conditions, the neighbors of any dipole can be identified by:
-
-\noindent
-\begin{varwidth}[t]{0.45\textwidth}
-    \begin{itemize}
-        \item Up: $s_{i-1, j}$
-        \item Down: $s_{i+1, j}$
-    \end{itemize}
-\end{varwidth}%
-\hspace{0.05\textwidth} % Adjust space between the columns
-\begin{varwidth}[t]{0.45\textwidth}
-    \begin{itemize}
-        \item Left: $s_{i, j-1}$
-        \item Right: $s_{i, j+1}$
-    \end{itemize}
-\end{varwidth}
-
-\noindent Here, we assume that $i$ increases when moving down the rows and $j$ increases when moving rightwards.
-
-To efficiently implement these periodic conditions, we introduce two shift vectors, $\mathbf{u}$ and $\mathbf{v}$. These vectors help us determine the correct indices for all neighbors, including those that wrap around the edges of the array. Letting $k$ be either the row or column index depending on the context we have:
-\begin{itemize}
-    \item $\mathbf{u}$: This shift vector is used for finding the up and left neighbors. It's calculated using the formula $(k - 1 + L) \% L$, where $\%$ denotes the modulus operation.
-    \item $\mathbf{v}$: This shift vector is used for finding the down and right neighbors. It's calculated using the formula $(k + 1) \% L$.
-\end{itemize}
-
-\noindent These shift vectors, yields the indices of all neighboring dipoles, ensuring that the periodic boundary conditions are correctly applied throughout the simulation. This approach not only simplifies the implementation but also ensures that the model more accurately represents the behavior of a continuous material, reducing edge effects that is only otherwise negligible for very large values of $L$.
-
-
-Another place in the algorithm where computational costs can be avoided is in the computation of the acceptance of dipole flips. Firstly, calculating $\Delta E$ implies calculating the total energy by equation \eqref{eq:p4-tot_energy} $N$ times for every Monte Carlo cycle. However this is not necessary as $\Delta E$ can only take on five different values depending on the sum over the neighboring dipoles, i.e there are only five macrostates for the ''neighborhood``. To illustrate, consider the two of the macrostates,
-
-\begin{itemize}
-    \item For $N\uparrow$=4, $\mathbf{s}_i \implies \begin{matrix} & \uparrow & \\ \uparrow & \uparrow & \uparrow \\ & \uparrow & \end{matrix}$, 
-    $\mathbf{s}_{i+1} \implies \begin{matrix}& \uparrow & \\ \uparrow & \downarrow & \uparrow \\ & \uparrow & \end{matrix}$.
-    \item For $N\uparrow$=1, $\mathbf{s}_i \implies\begin{matrix} & \downarrow & \\ \downarrow & \uparrow & \downarrow \\ & \uparrow & \end{matrix}$, 
-    $\mathbf{s}_{i+1} \implies \begin{matrix} & \downarrow & \\ \downarrow & \downarrow & \downarrow \\ & \uparrow &\end{matrix}$.    
-\end{itemize}
-
-\noindent From these two states we will have $\Delta E = 4 - (-4) = 8 J$ and $\Delta E = (-2) - 2 = -4 J$ respectively. Table \ref{tab:p4_delE} summarize the possible values of $\Delta E$ for all five macrostates. We see that $\Delta E = 2* E(\mathbf{s}_{i+1})$ which allows us to compute $\Delta E$ using 4 FLOPS to sum over the neighboring dipoles and 2 FLOPs for mulitplication of the sum with $s_k'$ (yielding the final energy) and 2 (yielding $\Delta E$).  
-
-\begin{table}[h!]
-\caption{The energy changes that can occur when changing from microstate $\mathbf{s}_i$ to $\mathbf{s}_{i+1}$ from the flip of a single dipole $s_k$. The energy is not the total energy of the lattice, but rather the energy of the five displayed dipoles.}
-\label{tab:p4_delE}
-\begin{tabular}{cccc}
-\toprule
-Macrostate $N\uparrow$  & Initial $E$ [J]   & Final $E$ [J] & $\Delta E$ [J] \\ \midrule
-4                       & -4                & 4             &     8          \\
-3                       & -2                &  2            & 4              \\
-2                       & 0                 & 0             & 0              \\
-1                       & 2                 & -2            & -4             \\
-0                       & 4                 & -4            & -8             \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-To make sure that the sampling converges towards a stationary state we use the detailed balance condition and a random number for cases where $\Delta E > 0$. From the detailed balance condition we get that the ratio of probabilities is 
-
-$$
-\frac{P(E(\mathbf{s}_i))}{P(E(\mathbf{s}_{i+1}'))} 
-= \frac{e^{-\beta E_i}/Z}{e^{-\beta E_{i+1}}/ Z} = e^{-\Delta E/\beta} \quad,
-$$
-
-\noindent which implies that the random number must simply be smaller then the boltzmann factor. Since there are only five distinct values $\Delta E$, there are also only five values of the Boltzmann factors per temperature, which can be pre-calculated. We solve this by using a map with the $\Delta E$ value as key and the Boltzmann factor as value; this look-up is less expensive than calculating the exponential function. 
-
-% \subsection{Experiment design}
 
 \subsection{Tools}
 
-All simulation code is written in cpp using mainly the armadillo library for vector handling. The exception is the analytical values for the $2\times 2$ model which is solved by python implemented functions using numpy. For plotting matplotlib and seaborn is used in jupyter notebooks. 
+All simulation code is written in c++ using the armadillo library for vector and matrix handling. Python is used for scripting the .cpp compilation using CMake and to plot during runtime. Some illustrations are also produced using jupyter notebooks and matplotlib, seaborn, cmocean and PIL. GDB has been used for debugging. 
 
-I have used the copilot codeium (\href{https://codeium.com/}{https://codeium.com/}) to aid with cpp syntax and python plotting. However, I have not used it to develop any parts of the code unsupervised, all code structure is therefor created by me.
+I have used the copilot codeium (\href{https://codeium.com/}{https://codeium.com/}) to aid with c++ syntax and python plotting. However, I have not used it to develop any parts of the code unsupervised, all code structure is therefor created by me.
 
 \end{document}

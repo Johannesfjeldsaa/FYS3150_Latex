@@ -84,8 +84,8 @@
 \begin{document}
 
 \title{
-The two-dimensional Ising model:\\
-An numerical investigation of distribution functions and phase transitions
+The double slit experiment:\\
+An numerical investigation of the time-dependent Schr\"odinger equation
 }      % self-explanatory
 \author{by: Johannes Fjeldså}          % self-explanatory
 \date{\today}                             % self-explanatory
@@ -93,8 +93,8 @@ An numerical investigation of distribution functions and phase transitions
 
 %This is how we create an abstract section.
 \begin{abstract}
-    \noindent In this study, the Metropolis algorithm is used to perform numerical investigations of distribution functions and phase transitions for the two-dimensional Ising model. The method shows promising results with low errors when benchmarking against analytical results for the $2\times 2$ model. Based on convergence of expectation values, we find an equilibration time of $10^{4}-10^{5}$ Monte Carlo cycles. This burn-in period is therefore used for further investigations. Further, we use MCMC sampling to estimate the Boltzmann distributions of temperatures above and below the critical Curie temperature ($T_c$), revealing a less stable state for higher temperatures. The magnetic phase transitions occurring at $T_c$ are further investigated, and we estimate a $T_c$ for an infinite model to be $\hat{T}_c=2.251~J/k_B$ fairly close to the analytical value of $T_c=2.269~J/k_B$.
-\end{abstract}
+\noindent In this study, the Crank-Nicolson discretization is used to create a simulator of a particle in a double-slit experiment setting. The method shows a high degree of computational stability, but longer simulations should be conducted to conclude on whether or not errors accumulate or are recovered. Building on this, we use the same simulator but with shorter simulation times to investigate the behavior of a particle modeled with the time-dependent Schr\"odinger equation. The simulator shows the ability to replicate the expected wave nature, such as interference patterns from a propagation to a slit wall.
+    \end{abstract}
 \maketitle
 
 
